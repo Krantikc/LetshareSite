@@ -1,0 +1,18 @@
+{
+	"localhost": {
+		"ENV": {
+			"api": ""
+		}
+	},
+	"inline": {
+		"ENV": {
+			"api": "http://localhost:8090/"
+		}
+	},
+	"devAPI": {
+		"ENV": {
+			"api": "http://172.16.1.14/"
+		}
+	},
+	"SHOW_APPS": "true"
+}

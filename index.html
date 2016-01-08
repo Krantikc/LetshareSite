@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sandvine Cloud Services</title>
+    <link rel="stylesheet" href="css/vendor.css" type="text/css">
+    <link rel="stylesheet" href="css/sv-styles.css" type="text/css">
+
+    <style>
+  
+  /* main menu styles */
+  #sv-main-menu { 
+  height:34px;
+  min-height:34px;
+  padding-right:0; /* replace with variable */
+  padding-left:0;  /* replace with variable */
+  background: -webkit-linear-gradient(#3B3B37, #090908);
+  background: -o-linear-gradient(#3B3B37, #090908); 
+  background: -moz-linear-gradient(#3B3B370, #090908);
+  display:block;
+  }
+
+  #sv-menu-list { 
+  margin:0;
+  padding: 8px 0 0 20px; 
+  list-style-type: none; 
+    -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+  }
+    #sv-menu-list li { display: inline; margin-right: 50px;  }
+    #sv-menu-list li img { margin:-4px 0 0 8px;  }  
+    #sv-menu-list a { color: #85B88C; font-weight:bold; font-size:13px; } 
+    #sv-menu-list li a:hover, #ul-right li a:hover { color: #85D292; text-decoration:underline; }
+    #sv-menu-list li a:focus, #ul-right li a:focus { color: #fff; }
+  
+    .active { background-color:transparent; color:#fff; }
+    .active:hover { background-color:transparent; color:#fff; }
+
+  
+  /* left nav styles */
+  .cs-tabs { margin:0;  }
+  .cs tabs img { margin: 0 ; padding:0 border:0; }
+  .nav-pills>li>a, a:hover, a:active { font-size:12px; }
+  .nav-pills>li>a  { border-bottom: 1px solid #777;  } 
+  .nav-pills>li>a:hover  { background-color:transparent; border-bottom: 1px solid #777;  } 
+  
+  
+  /* right side styles */
+  .tab-content { padding:0; margin:-12px 0 0 0; }
+  .tab-title { color:#333; font-size:1.6em; }
+
+  </style>
+
+  <base href="/">
+  </head>
+
+  <body>
+    <!-- angular router 'ui-view' loads page content -->
+    <div id="sv-page-container-wrap" ui-view></div>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=drawing"></script>
+    <script src="js/vendor.js"></script>
+    <script src="js/app.js"></script>
+    <script src="config.js"></script>
+  </body>
+</html>

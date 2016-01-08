@@ -1,0 +1,118 @@
+div.sv-trends-callout-1 {
+	padding:0;
+	line-height:1.0;
+	overflow:hidden;
+	width:100%;
+	background-color:#fff;
+	border:1px #d4d4d4 solid;
+  margin-bottom:10px;
+}
+
+.sv-trends-measurement {
+	width:100%;
+	padding:8px;
+	background-color:#f1f1f1;
+	min-height:28px;
+}
+
+.sv-measurement-name {
+	font-size:12px;
+	color:#333;	
+}
+.sv-measurement-unit {
+	color:#999;	
+	font-size:10px;
+	padding-left:4px;
+}
+
+.sv-trends-value-container {
+	width:70%;
+	float:left;
+	margin:0;
+	padding:0;
+	text-align:left;
+	min-height:40px; 
+	padding-right:8px;	
+	color:#469264; 
+	border-right:1px solid #d4d4d4;
+}
+
+.sv-trends-value-left {
+  width:50%;
+  float:left;
+}
+
+.sv-trends-value-right {
+  width:50%;
+  float:right;
+}
+
+.sv-kpi-current-value {
+  font-size:18px;
+  margin:6px 0 0 8px;
+}
+
+.sv-kpi-current-value img {
+  padding:0 0 5px 6px;
+}
+
+
+.sv-kpi-app-icon {
+  color:#666;
+  font-size:11px;
+  font-weight:bold;
+  line-height:1.4;
+  margin:6px 0 0 8px;
+}
+
+.sv-kpi-app-icon img {
+  padding-left:6px;
+}
+
+.sv-trend-prev-value-container {
+  width:30%;
+  float:left;
+  margin:0;
+  padding:0;
+  background-color:#fff;
+  text-align:left;
+  text-align:right;
+  min-height:40px;
+}
+
+.sv-kpi-previous-value {
+  padding:6px 8px 0 0;
+  font-size:18px;
+  color:#666;  
+}
+
+.sv-kpi-timeframe-container {
+  font-size:9px;
+  padding:0;
+  margin:0;
+  color:#999;
+}
+
+div.sv-kpi-timeframe-container-left {
+	float:left; width:70%;margin:0;padding:0;border-right:1px solid #d4d4d4;
+}
+
+.sv-kpi-timeframe-container-left p {
+  padding:0 0 6px 8px;
+  margin:0;
+  border:none;	
+}
+
+.sv-kpi-timeframe-container-right {
+  float:right;
+  width:30%;
+  margin:0;
+  padding:0; 
+}
+
+.sv-kpi-timeframe-container-right p {
+  width:100%; 
+  padding:0 8px 6px 0;
+  margin:0;
+  text-align:right;
+}
