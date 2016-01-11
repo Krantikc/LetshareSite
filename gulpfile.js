@@ -90,20 +90,9 @@ gulp.task('vendorScripts', function() {
             'bower_components/**/assets/javascripts/bootstrap.js',
             'bower_components/**/release/angular-ui-router.min.js',
             'bower_components/**/ui-bootstrap-tpls.js',
-            'bower_components/**/angular-smart-table/dist/smart-table.js',
             'bower_components/**/angular-multi-select/isteven-multi-select.js',
             'bower_components/**/underscore.js',
-            'bower_components/**/scrollglue.js',
-            'bower_components/**/highcharts-more.js',
-            'bower_components/**/modules/solid-gauge.js',
-            'bower_components/**/dist/angular-simple-logger.min.js',
-            'bower_components/**/dist/angular-google-maps.min.js',
-            'bower_components/**/dist/markerclusterer.min.js',
-            'bower_components/**/d3.min.js',
-            'bower_components/**/d3-tip/index.js',
-            'bower_components/**/dist/leaflet.js',
-            'bower_components/**/dist/leaflet.markercluster.js',
-            'bower_components/**/dist/leaflet.draw.js'
+            'bower_components/**/scrollglue.js'
         ])
         .pipe(plumber())
         .pipe(concat('vendor.js'))
