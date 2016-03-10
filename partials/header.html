@@ -1,0 +1,20 @@
+<!-- header area, customizable by customers. -->
+<div ng-controller="Header" class="row">
+  <div class="col-xs-12" id="sv-header">
+    <div class="col-xs-12 col-sm-6" id="sv-brand" >
+      <img id="sv-logo-green" src="imgs/logo-green.png" alt="" title="" />
+      <img id="sv-brand-name" src="imgs/brand-name-black.png" alt="" title="" />
+      <img id="sv-product-name" src="imgs/product-name.png" alt="" title="" />
+    </div>
+    <div class="col-xs-12 col-sm-6" id="sv-user-account">
+          <div class="dropdown">
+            <ul class="sv-language-selector">
+              <li ng-repeat="language in languages"
+                  ng-click="languageChanged(language);"
+                  ng-class="{ 'selected': selected.value === language.value }">
+                {{language.title}}</li>
+            </ul>
+          </div>
+    </div>
+  </div>
+</div>

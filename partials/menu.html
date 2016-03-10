@@ -1,0 +1,26 @@
+<!-- main menu for desktop, tablet and mobile -->
+<div id="sv-main-menu-container"  ng-controller="Menu" resize>
+    <div class="sv-navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sv-navbar" aria-expanded="false" aria-controls="navbar">
+        </button>
+    </div>
+    <div id="sv-navbar" class="navbar-collapse collapse" aria-expanded="false" navbar>
+        <ul class="sv-main-menu-list nav navbar-nav" >
+            <li class="sv-menu-list-ls">
+                <a ui-sref="view" ui-sref-active="current">{{view}}</a>
+            </li>
+            
+            <li class="sv-menu-list-ls pull-right">
+                <a ui-sref="account" ui-sref-active="current">email</a>
+                
+                <ul>
+                  <li>
+                    <a ui-sref="user.logout" ui-sref-active="current">Logout</a>
+                  </li>
+                </ul>
+            </li>
+        </ul>
+        <div class="sv-spacer-bar"></div>
+    </div><!--/.nav-collapse -->
+</div>
+

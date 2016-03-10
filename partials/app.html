@@ -1,0 +1,13 @@
+<!-- this file loads content for manage dashboard pages -->
+<!-- header content include -->
+<div ng-include src="'partials/header.html'"></div>
+<!-- main menu content include -->
+<div ng-include src="'partials/menu.html'"></div>
+<!-- manage pages content area -->
+<ui-view class="container-fluid" id="sv-page-container"></ui-view>
+<div id="sv-footer-wrap">
+  <!-- footer 1 - customer content include -->
+  <div ng-include src="'partials/footer-customer.html'"></div>
+  <!-- footer 2 - sandvine content include -->
+  <div ng-include src="'partials/footer-sandvine.html'"></div>
+</div>

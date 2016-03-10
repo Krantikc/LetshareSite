@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sandvine Cloud Services</title>
-    <link rel="stylesheet" href="css/vendor.css" type="text/css">
-    <link rel="stylesheet" href="css/sv-styles.css" type="text/css">
+    <title>Letshare</title>
+    <link rel="stylesheet" href="../css/vendor.css" type="text/css">
+    <link rel="stylesheet" href="../css/sv-styles.css" type="text/css">
 
     <style>
   
@@ -53,6 +53,18 @@
   /* right side styles */
   .tab-content { padding:0; margin:-12px 0 0 0; }
   .tab-title { color:#333; font-size:1.6em; }
+  
+  ::-webkit-scrollbar {
+    background: transparent;
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
 
   </style>
 
@@ -62,7 +74,6 @@
   <body>
     <!-- angular router 'ui-view' loads page content -->
     <div id="sv-page-container-wrap" ui-view></div>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=drawing"></script>
     <script src="js/vendor.js"></script>
     <script src="js/app.js"></script>
     <script src="config.js"></script>
