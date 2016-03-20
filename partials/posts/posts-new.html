@@ -1,109 +1,151 @@
 <div class="ls-new-posts-container container-fluid">
   <div class="row">
+    <div class="col-md-12">
+      <h1> New Post </h1>
+    </div>
+    
+    <form  name="postForm" ng-submit="submitPost()">
+      <div class="col-md-12">
+        
+        <div class="col-md-4">
+        <fieldset class="form-group col-lg-12">
+          <label for="title">Title</label>
+          <input ng-required="true" 
+                 ng-model="post.title" type="text" class="form-control" id="title" placeholder="Title">
+        </fieldset>
+        
+        <div class="row">
+          <fieldset class="form-group col-lg-8">
+            <label for="category">Category</label>
+            <select class="form-control"
+              ng-required="true"
+              ng-options="category.categoryId as category.name for category in categoriesList" 
+              ng-model="selectedCategory"
+              ng-change="onCategorySelection()"></select>
+          </fieldset>
+        </div>
+        
+        <fieldset class="form-group col-lg-12">
+          <label for="description">Description</label>
+          <textarea rows="{{textAreaRows}}" ng-required="true" 
+                    ng-model="post.description" class="form-control" id="description" placeholder="Include the brand, model, age and any included accessories."></textarea>
+        </fieldset>
+        
+        
+        <!-- Location 1 -->
+        <fieldset class="ls-fieldset-block">
+          <fieldset class="form-group col-lg-5">
+            <label for="location">Location</label>
+            <input ng-required="true" 
+                   ng-model="post.location1Id" type="text" class="form-control" id="location" placeholder="Location">
+          </fieldset>
+          
+          <fieldset class="form-group col-lg-5">
+            <label for="city">City</label>
+            <input ng-required="true" 
+                   ng-model="post.city1Id" type="text" class="form-control" id="city" placeholder="City">
+          </fieldset>
+        </fieldset>
+        
+        <!-- Location 2 -->
+        <fieldset class="ls-fieldset-block" ng-if="visibleFields.location2">
+          <fieldset class="form-group col-lg-5">
+            <label for="location">Location</label>
+            <input ng-model="post.location2Id" type="text" class="form-control" id="location" placeholder="Location">
+          </fieldset>
+          
+          <fieldset class="form-group col-lg-5">
+            <label for="city">City</label>
+            <input ng-model="post.city2Id" type="text" class="form-control" id="city" placeholder="City">
+          </fieldset>
+        </fieldset>
+        
+        <!-- Location 3 -->
+        <fieldset class="ls-fieldset-block" ng-if="visibleFields.location3">
+          <fieldset class="form-group col-lg-5">
+            <label for="location">Location</label>
+            <input ng-model="post.location3Id" type="text" class="form-control" id="location" placeholder="Location">
+          </fieldset>
+          
+          <fieldset class="form-group col-lg-5">
+            <label for="city">City</label>
+            <input ng-model="post.city3Id" type="text" class="form-control" id="city" placeholder="City">
+          </fieldset>
+        </fieldset>
+        </div>
+        
+        <div class="col-md-4">
+          <fieldset>
+            <fieldset class="form-group col-lg-10">
+              <label for="brand">Brand</label>
+              <input ng-required="true" 
+                     ng-model="post.brand" type="text" class="form-control" id="brand" placeholder="Eg, Hundai, KTM, Prestige etc">
+            </fieldset>
+            <fieldset class="form-group col-lg-10">
+              <label for="unique-id">Unique Reference Id</label>
+              <input ng-required="uniqueIdRequired" ng-model="post.uniqueId" type="text" class="form-control" id="unique-id" placeholder="License No., Registration No. etc">
+            </fieldset>
+          </fieldset>
+          
+          <fieldset class="form-group">
+            <fieldset class="form-group  col-lg-5">
+              <label for="city">Capacity</label>
+              <input ng-model="post.capacity" type="text" class="form-control" id="city" placeholder="Eg, 5, 100 etc">
+            </fieldset>
+            
+            <fieldset class="form-group col-lg-3">
+              <label for="unique-id">&nbsp</label>
+              <select class="form-control" ng-model="post.measurement" ng-options="measurement as measurement.label for measurement in measurements"></select> <!-- sync with availability -->
+            </fieldset>
+          </fieldset>
+          
+          <fieldset class="form-group">
+            <fieldset class="form-group col-lg-5">
+              <label for="unique-id">Availability</label>
+              <input ng-model="post.availability" type="text" class="form-control" id="availability" placeholder="Eg: 5, 100 etc">
+            </fieldset>
+            
+            <fieldset class="form-group col-lg-3">
+              <label for="unique-id">&nbsp</label>
+              <select class="form-control" ng-model="post.measurement" ng-options="measurement as measurement.label for measurement in measurements"></select> <!-- sync with availability -->
+            </fieldset>
+          </fieldset>
+          
+          <fieldset class="form-group col-lg-10">
+            <label for="unique-id">Amenities</label>
+            <input ng-model="post.amenities" type="text" class="form-control" id="amenities" placeholder="AC, Car Parking, Security etc">
+          </fieldset>
+          <fieldset class="form-group col-lg-5">
+            <label for="unique-id">Age</label>
+            <input ng-model="post.age" type="text" class="form-control" id="age" placeholder="Age">
+          </fieldset>
+          <fieldset class="form-group  col-lg-3">
+            <label for="unique-id">&nbsp</label>
+            <select class="form-control" ng-model="post.ageType" ng-options="agePeriod as agePeriod.label for agePeriod in agePeriods"></select> <!-- sync with availability -->
+          </fieldset>
+
+        </div>
+        
+        <div class="col-md-4">
+          <div class="row">
+            <div class="col-md-3">
+            ds
+            </div>
+            <div class="col-md-3">
+            sd
+            </div>
+            <div class="col-md-3">
+            df
+            </div>
+          </div>
+        </div>
+      </div>
+      <button>Submit</button>
+    </form>
+  </div>
   
-  <h1> New Post </h1>
-  <div class="col-md-10">
-  <form>
-    <div class="col-md-6">
-    <fieldset class="form-group">
-      <label for="title">Title</label>
-      <input ng-required="true" 
-             ng-model="post.title" type="text" class="form-control" id="title" placeholder="Title">
-    </fieldset>
-    
-    <fieldset class="form-group">
-      <label for="description">Description</label>
-      <textarea ng-required="true" 
-                ng-model="post.description" class="form-control" id="description" placeholder="Description"></textarea>
-    </fieldset>
-    
-    <fieldset class="form-group">
-      <label for="category">Category</label>
-      <select 
-        ng-required="true"
-        ng-options="category.categoryId as category.name for category in categoriesList" 
-        ng-model="selectedCategory"
-        ng-change="onCategorySelection()"></select>
-    </fieldset>
-    
-    <!-- Location 1 -->
-    <fieldset class="ls-fieldset-block">
-      <fieldset class="form-group">
-        <label for="location">Location</label>
-        <input ng-required="true" 
-               ng-model="post.location1Id" type="text" class="form-control" id="location" placeholder="Location">
-      </fieldset>
-      
-      <fieldset class="form-group">
-        <label for="city">City</label>
-        <input ng-required="true" 
-               ng-model="post.city1Id" type="text" class="form-control" id="city" placeholder="City">
-      </fieldset>
-    </fieldset>
-    
-    <!-- Location 2 -->
-    <fieldset class="ls-fieldset-block" ng-if="visibleFields.location2">
-      <fieldset class="form-group">
-        <label for="location">Location</label>
-        <input ng-model="post.location2Id" type="text" class="form-control" id="location" placeholder="Location">
-      </fieldset>
-      
-      <fieldset class="form-group">
-        <label for="city">City</label>
-        <input ng-model="post.city2Id" type="text" class="form-control" id="city" placeholder="City">
-      </fieldset>
-    </fieldset>
-    
-    <!-- Location 3 -->
-    <fieldset class="ls-fieldset-block" ng-if="visibleFields.location3">
-      <fieldset class="form-group">
-        <label for="location">Location</label>
-        <input ng-model="post.location3Id" type="text" class="form-control" id="location" placeholder="Location">
-      </fieldset>
-      
-      <fieldset class="form-group">
-        <label for="city">City</label>
-        <input ng-model="post.city3Id" type="text" class="form-control" id="city" placeholder="City">
-      </fieldset>
-    </fieldset>
-    
-    
-    </div>
-    <div class="col-md-6">
-    <fieldset class="ls-fieldset-block">
-      <fieldset class="form-group">
-        <label for="brand">Brand</label>
-        <input ng-required="true" 
-               ng-model="post.brand" type="text" class="form-control" id="brand" placeholder="Brand">
-      </fieldset>
-      <fieldset class="form-group">
-        <label for="unique-id">Unique Id</label>
-        <input ng-required="uniqueIdRequired" ng-model="post.uniqueId" type="text" class="form-control" id="unique-id" placeholder="Unique Id">
-      </fieldset>
-        <fieldset class="form-group">
-        <label for="city">Capacity</label>
-        <input ng-model="post.capacity" type="text" class="form-control" id="city" placeholder="Capacity">
-        <select ng-model="post.measurement"><option>members</option><option>kg</option></select> <!-- sync with availability -->
-      </fieldset>
-      
-      <fieldset class="form-group">
-        <label for="unique-id">Availability</label>
-        <input ng-model="post.availability" type="text" class="form-control" id="availability" placeholder="Availability">
-        <select ng-model="post.measurement"><option>members</option><option>kg</option></select>   <!-- sync with availability -->   
-      </fieldset>
-      
-      <fieldset class="form-group">
-        <label for="unique-id">Amenities</label>
-        <input ng-model="post.amenities" type="text" class="form-control" id="amenities" placeholder="Amenities">
-      </fieldset>
-      <fieldset class="form-group">
-        <label for="unique-id">Age</label>
-        <input ng-model="post.age" type="text" class="form-control" id="age" placeholder="Age">
-      </fieldset>
-    </fieldset>
-    </div>
-    <button ng-click="submitPost()">Submit</button>
+  <form action="http://localhost:8099/LetshareCore/rest/post/upload" method="post" enctype="multipart/form-data">
+    <input type="file" name="uploadedFile" size="50"/>
+    <input type="submit" value="Upload It" />
   </form>
-  </div>
-  </div>
 </div>

@@ -68,6 +68,8 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
             });
             
             $httpProvider.interceptors.push('authInterceptor');
+            
+            $httpProvider.defaults.withCredentials = true;
 
         //$locationProvider.html5Mode(true);
 
