@@ -92,7 +92,8 @@ gulp.task('vendorScripts', function() {
             'bower_components/**/ui-bootstrap-tpls.js',
             'bower_components/**/angular-multi-select/isteven-multi-select.js',
             'bower_components/**/underscore.js',
-            'bower_components/**/scrollglue.js'
+            'bower_components/**/scrollglue.js',
+            'bower_components/**/ng-file-upload-all.min.js'
         ])
         .pipe(plumber())
         .pipe(concat('vendor.js'))

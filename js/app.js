@@ -97,4 +97,4 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
     }]);
 
 angular.module('Letshare', ['app.config', 'ui.router', 'ui.bootstrap',
-    'isteven-multi-select']);
+    'isteven-multi-select', 'ngFileUpload']);
