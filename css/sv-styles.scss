@@ -461,7 +461,7 @@ ul.sv-main-menu-list {
 	width: 100%;
 
 	.sv-menu-list-ls {
-		margin: 0;
+		margin: 0 20px;
 		padding: 6px 20px 8px;
 
 		&.sv-settings {
@@ -1313,10 +1313,9 @@ PLEASE DON'T CHANGE AND DON'T ADD STYLES BELOW THIS POINT */
 /* Home Page */
 #ls-home {
   padding-top: 7px;
-  min-height: 570px;
+  overflow: auto;
   
   #post-btn {
-    margin: 20% 40%;
     width: 150px;
     color: white;
     padding: 15px;
@@ -1337,13 +1336,55 @@ PLEASE DON'T CHANGE AND DON'T ADD STYLES BELOW THIS POINT */
     border-radius: 3px;
 }
 
+
+.btn-group.open .dropdown-toggle {
+    box-shadow: none;
+    background: none;
+    border: none;
+    
+    &:hover {
+        background: none;
+        border: none;
+    }
+}
+.account-btn {
+
+    
+    .dropdown-toggle {
+        padding: 5px;
+        
+        &:hover {
+             padding: 5px;
+        }
+    }
+    
+    .dropdown-menu {
+        li {
+            padding: 5px 10px;
+            
+            &:hover {
+                background: beige;
+                cursor: pointer;
+                color: green;
+                
+            }
+            
+        }
+    }
+    
+    &:hover {
+       color: green;
+    }
+}
+
 #ls-posts {
 
+    .centered {
+        float: none;
+        margin: 0 auto;
+    }
+        
     #sv-posts-list {
-        .centered {
-            float: none;
-            margin: 0 auto;
-        }
         
         .sv-btn {
             text-align: right;
@@ -1399,12 +1440,12 @@ PLEASE DON'T CHANGE AND DON'T ADD STYLES BELOW THIS POINT */
             }
         }
     }
-    form {
+    .new-post-form {
         margin: auto;
         border: 1px solid #EBEBEB;
         max-width: 602px;
-        min-height: 1200px;
-        padding: 0 30px;
+        overflow: auto;
+        padding: 30px;
         right: 0px;
         
         .drop-box {
@@ -1424,13 +1465,19 @@ PLEASE DON'T CHANGE AND DON'T ADD STYLES BELOW THIS POINT */
              width: 100%;
              height: 100px;
         }
-           
-        #posts-submit {
-            width: 100px;
-            height: 30px;
-            background: #03BFA6;
-            color: white;
+        
+        .submit-btn-block {
+            padding: 20px 15px;
+            
+            #posts-submit-btn {
+                width: 150px;
+                height: 40px;
+                background: #03BFA6;
+                color: white;
+                float: right;
+            }
         }
+        
     }
     
 }

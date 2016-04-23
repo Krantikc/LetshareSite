@@ -43,14 +43,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
                 url: '/posts',
                 templateUrl: 'partials/posts.html',
                 parent: 'app',
-                authenticate: true
+                authenticate: false
             })
             .state('posts.list', {
                 url: '/list',
                 templateUrl: 'partials/posts/posts-list.html',
                 controller: 'PostsController',
                 parent: 'posts',
-                authenticate: true
+                authenticate: false
             })
             .state('posts.new', {
                 url: '/new',
