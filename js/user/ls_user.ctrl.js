@@ -1,6 +1,6 @@
 
-angular.module('Letshare').controller('UserController', ['$scope', '$http', 'svLocale', 'userAPIService', 
-    function($scope, $http, svLocale, userAPIService) {
+angular.module('Letshare').controller('UserController', ['$rootScope', '$scope', '$http', 'svLocale', 'userAPIService', '$state',
+    function($rootScope, $scope, $http, svLocale, userAPIService, $state) {
  
         $scope.registerUser = function() {
             userAPIService
@@ -13,7 +13,10 @@ angular.module('Letshare').controller('UserController', ['$scope', '$http', 'svL
         
                 
         $scope.doLogout = function() {
-            delete window.sessionStorage;
+            delete window.localStorage.currentUser;
+            delete window.localStorage.loggedIn;
+            delete window.localStorage.token;
+            $rootScope.currentUser = {};
             $state.go('login');
         };
         
@@ -27,6 +30,7 @@ angular.module('Letshare').controller('SessionController', ['$scope', '$http', '
         
         $scope.doLogout();
         $scope.doLogout = function() {
+            
             delete window.sessionStorage;
             $state.go('login');
         };

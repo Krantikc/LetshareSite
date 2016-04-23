@@ -1,10 +1,10 @@
 {
-  "name": "cloudservices",
+  "name": "letshare",
   "version": "0.1.0",
   "authors": [
-    "Caleb Gerlach <cgerlach@sandvine.com>"
+    "Kranti K C"
   ],
-  "description": "UI for Cloud Services",
+  "description": "UI for Letshare",
   "moduleType": [
     "amd",
     "globals",
@@ -28,7 +28,8 @@
     "angular-multi-select": "*",
     "underscore": "~1.8.3",
     "angular-scroll-glue": "~2.0.6",
-    "ng-file-upload": "*"
+    "ng-file-upload": "*",
+    "ng-idle": "*"
   },
   "devDependencies": {},
   "resolutions": {

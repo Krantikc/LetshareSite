@@ -1,6 +1,19 @@
-<div id="sv-modal-container">
-    <button ui-sref="posts.new">Add new</button>
-    <div ng-repeat="post in postsList">
-      {{post.title}}
+<div id="sv-posts-list" class="row">
+    <div class="col-md-10 centered sv-btn">
+      <button ui-sref="posts.new" class="btn-success" id="posts-new-btn">Add new</button>
+    </div>
+    <div class="col-md-10 centered filter-box">
+      <input type="text"/>
+    </div>
+    <div class="col-md-10 centered list-box">
+      <div ui-sref="posts.details({id: post.postId})" ng-repeat="post in postsList"  class="col-md-3 item">
+        <div class="img-block">
+          <img ng-src="imgs/monitor-page-background.png"/>
+        </div>
+        <div class="details-block">
+          <div class="title">{{post.title}}</div>
+        </div>
+        
+      </div>
     </div>
 </div>

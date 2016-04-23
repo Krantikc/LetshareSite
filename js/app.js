@@ -75,26 +75,30 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', function($s
 
     }]);
 
-    app.run(['$rootScope', '$state', '$location', 'LoginService', function($rootScope, $state, $location, LoginService) {
+    app.run(['$rootScope',  '$state', '$location', 'LoginService', function($rootScope,  $state, $location, LoginService) {
         $rootScope.$on('$stateChangeStart', function(evt, to, params) {
-          var isLoggedIn = LoginService.loginCheck();
-          if (isLoggedIn === 'true' && to.name === 'login') {
-            evt.preventDefault();
-          }
+          $rootScope.currentUser = LoginService.loginCheck();
           
-          if (to.authenticate) {
-              //return;
-              
-              if (isLoggedIn !== 'true') {
+          $rootScope.$watch('currentUser',function(newVal, oldVal) {
+              if ($rootScope.currentUser != null && to.name === 'login') {
                 evt.preventDefault();
-                $rootScope.redirectTo = to;
-                $state.go('login', params);
-              } 
-          }
+              }
+              
+              if (to.authenticate) {
+                  //return;
+                  
+                  if ($rootScope.currentUser == null) {
+                    evt.preventDefault();
+                    $rootScope.redirectTo = to;
+                    $state.go('login', params);
+                  } 
+              }
+          })
+          
           
           
         });
     }]);
 
 angular.module('Letshare', ['app.config', 'ui.router', 'ui.bootstrap',
-    'isteven-multi-select', 'ngFileUpload']);
+    'isteven-multi-select', 'ngFileUpload', 'ngIdle']);

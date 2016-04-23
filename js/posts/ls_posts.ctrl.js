@@ -1,10 +1,10 @@
 
-angular.module('Letshare').controller('PostsController', ['$scope', '$http', 'svLocale', 'postsAPIService', 'categoryAPIService', 'Upload',
-    function($scope, $http, svLocale, postsAPIService, categoryAPIService, Upload) {
+angular.module('Letshare').controller('PostsController', ['$scope', '$http', 'svLocale', 'postsAPIService', 'categoryAPIService', 'Upload', 'locationsAPIService',
+    function($scope, $http, svLocale, postsAPIService, categoryAPIService, Upload, locationsAPIService) {
  
         document.cookie = 'auth_token=hello';
         $scope.visibleFields = {}; 
-        $scope.textAreaRows = 8;
+        $scope.textAreaRows = 7;
         
         $scope.measurements = [{label: 'Killogroms', value: 'kg'},
                                {label: 'Litres', value: 'litres'},
@@ -15,6 +15,31 @@ angular.module('Letshare').controller('PostsController', ['$scope', '$http', 'sv
                                {label: 'Months', value: 'months'},
                                {label: 'days', value: 'days'}];
                                
+                           locationsAPIService.getAllCities().then(function(response) {
+                               $scope.cities = response.data.cities;
+                           }, function() {
+                               console.error('ERROR: While loading cities');
+                           });
+                           
+        $scope.citySelectionChange = function(city, type) {
+            locationsAPIService.getLocationsByCity(city.cityId).then(function(response) {
+                switch(type) {
+                    case 'from':
+                       $scope.fromLocations = [];
+                       $scope.fromLocations = response.data.locations;
+                       break;
+                    case 'to':
+                       $scope.toLocations = [];
+                       $scope.toLocations = response.data.locations;
+                       break;
+                    default:
+                       $scope.fromLocations = response.data.locations;
+                }
+            }, function() {
+                console.error('ERROR: while locations');
+            });
+            
+        }
     
         $scope.submit = function() {
           if ($scope.form.file.$valid && $scope.file) {
@@ -26,7 +51,7 @@ angular.module('Letshare').controller('PostsController', ['$scope', '$http', 'sv
         $scope.upload = function (file) {
             Upload.upload({
                 url: 'http://localhost:8099/LetshareCore/rest/post/upload',
-                data: {uploadedFile: file, 'username': $scope.username}
+                data: {uploadedFile: file, 'name': 'krantu'}
             }).then(function (resp) {
                 console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
             }, function (resp) {
@@ -64,6 +89,7 @@ angular.module('Letshare').controller('PostsController', ['$scope', '$http', 'sv
                         //$scope.postsList = response.posts;
                         console.log(response);
                     });
+                    
         };
         
                 
@@ -79,7 +105,7 @@ angular.module('Letshare').controller('PostsController', ['$scope', '$http', 'sv
                 default:
                     $scope.visibleFields.location2 = false;
                     $scope.visibleFields.location3 = false;
-                    $scope.textAreaRows = 8;
+                    $scope.textAreaRows = 7;
             }
         };
     }

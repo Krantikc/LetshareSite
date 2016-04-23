@@ -13,8 +13,9 @@ angular.module('Letshare').controller('LoginController', function($scope, $rootS
                 .then(function(response) {
                     var result = response.data;
                     if(result.success) {
-                        window.sessionStorage.setItem('currentUser', result.user);
-                        window.sessionStorage.setItem('loggedIn', true);
+                        window.localStorage.setItem('currentUser', JSON.stringify(result.user));
+                        window.localStorage.setItem('loggedIn', true);
+                        window.localStorage.setItem('token', result.token);
                     }
                     if ($rootScope.redirectTo) {
                         $state.go($rootScope.redirectTo);
@@ -30,12 +31,21 @@ angular.module('Letshare').controller('LoginController', function($scope, $rootS
         
 });
 
-angular.module('Letshare').service('LoginService', function($state) {
+angular.module('Letshare').service('LoginService', function($state, $rootScope, authAPIService) {
     var vm = this;
     
     vm.loginCheck = function() {
-        if (window.sessionStorage && window.sessionStorage.getItem('loggedIn')) {
-            return window.sessionStorage.getItem('loggedIn');
+        if (window.localStorage && window.localStorage.getItem('loggedIn')) {
+            var currentUser = JSON.parse(window.localStorage.getItem('currentUser'));
+            authAPIService.validateUserSession(currentUser).then(function(response) {
+                var result = response.data;
+                if (!result.validSession) {
+                    $state.go('login');
+                } else {
+                    $rootScope.currentUser = currentUser;
+                }
+            });
+            return currentUser;
         }
     }
 
@@ -48,7 +58,10 @@ angular.module('Letshare').factory('authAPIService', function($http, ENV) {
                 method: 'POST',
                 url: ENV.api + 'user/auth',
                 data: {email: email, password: password},
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'Authorization': 'prelogin'
+                },
                 transformRequest: function(obj) {
                     var str = [];
                     for(var p in obj)
@@ -57,6 +70,15 @@ angular.module('Letshare').factory('authAPIService', function($http, ENV) {
                     return str.join("&");
                 }
             });
-    }
+    };
+    
+    authService.validateUserSession = function(user) {
+        return $http({
+                method: 'POST',
+                url: ENV.api + 'user/validatesession',
+                data: user
+            });
+    };
+    
     return authService; 
 });

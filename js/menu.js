@@ -43,6 +43,7 @@ angular.module('Letshare').controller('Menu', ['$scope', '$rootScope', '$statePa
             svLocale.setSelectedLanguage(language);
         };
 
+        
         $scope.bindClick = function(event) {
             var $trigger = angular.element(document.querySelector('#sv-main-menu-container'));
             if (!$trigger[0].contains(event.target)) {

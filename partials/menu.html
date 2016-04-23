@@ -10,8 +10,28 @@
                 <a ui-sref="view" ui-sref-active="current">{{view}}</a>
             </li>
             
+            
             <li class="sv-menu-list-ls pull-right">
-                <a ui-sref="account" ui-sref-active="current">email</a>
+              <div class="btn-group" ng-if="$root.currentUser">
+                <a class="btn dropdown-toggle" data-toggle="dropdown">
+                  {{$root.currentUser.email}}
+                  <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <a ui-sref="user.settings" ui-sref-active="current">Settings</a>
+                  </li>
+                  <li>
+                    <a ui-sref="user.logout" ui-sref-active="current">Logout</a>
+                  </li>
+                </ul>
+              </div>
+              
+            </li>
+            
+            <!--
+            <li class="sv-menu-list-ls pull-right">
+                <a ui-sref="account" ui-sref-active="current">{{$root.currentUser.email}}</a>
                 
                 <ul>
                   <li>
@@ -19,6 +39,7 @@
                   </li>
                 </ul>
             </li>
+            -->
         </ul>
         <div class="sv-spacer-bar"></div>
     </div><!--/.nav-collapse -->

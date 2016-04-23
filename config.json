@@ -11,7 +11,7 @@
     },
     "devAPI": {
         "ENV": {
-            "api": "http://172.16.1.14/"
+            "api": ""
         }
     },
     "SHOW_APPS": "true"

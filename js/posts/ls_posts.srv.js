@@ -1,6 +1,6 @@
 
 angular.module('Letshare').factory('postsAPIService',
-    function($http, ENV) {
+    function($http, ENV, Upload) {
         
         var postsService = {};
         
@@ -21,6 +21,11 @@ angular.module('Letshare').factory('postsAPIService',
         };
             
         postsService.addPost = function(post) {
+            return Upload.upload({
+                url: ENV.api + 'post',
+                data: post
+            });
+            /*
             return $http({
                 method: 'POST',
                 url: ENV.api + 'post',
@@ -34,6 +39,7 @@ angular.module('Letshare').factory('postsAPIService',
                     return str.join("&");
                 },
             });
+            */
         };
         
         return postsService;
