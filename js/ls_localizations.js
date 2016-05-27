@@ -11,34 +11,6 @@ angular.module('Letshare').factory('svLocale', ['$stateParams', '$state', '_',
                 'en-us': 'Home',
                 'ko-kr': '지도'
             },
-            'view' : {
-                'en-us': 'View',
-                'ko-kr': '지도'
-            },
-            'poorHealth' : {
-                'en-us': 'Poor',
-                'ko-kr': '지도'
-            },
-            'moderateHealth' : {
-                'en-us': 'Moderate',
-                'ko-kr': '지도'
-            },
-            'goodHealth' : {
-                'en-us': 'Good',
-                'ko-kr': '지도'
-            },
-            'type' : {
-                'en-us': 'Type',
-                'ko-kr': '지도'
-            },
-            'count' : {
-                'en-us': 'Total device count',
-                'ko-kr': '지도'
-            },
-            'averageBandwidth' : {
-                'en-us': 'Average Bandwidth',
-                'ko-kr': '지도'
-            },
             'health' : {
                 'en-us': 'Health',
                 'ko-kr': '지도'
@@ -49,6 +21,14 @@ angular.module('Letshare').factory('svLocale', ['$stateParams', '$state', '_',
             },
             'submitBtn' : {
                 'en-us': 'Submit',
+                'ko-kr': '지도'
+            },
+            'login' : {
+                'en-us': 'Login',
+                'ko-kr': '지도'
+            },
+            'register' : {
+                'en-us': 'Register',
                 'ko-kr': '지도'
             }
         };

@@ -1,14 +1,40 @@
 
 angular.module('Letshare').controller('UserController', ['$rootScope', '$scope', '$http', 'svLocale', 'userAPIService', '$state',
     function($rootScope, $scope, $http, svLocale, userAPIService, $state) {
- 
+        $scope.formValid = true;
+        
+        function failureHandler(error) {
+            console.error('Error in XHR. ' + error.data);
+        }
+        function validateForm(form) {
+            if (form.$valid) {
+                $scope.formValid = true;
+                return true;
+            } else {
+                $scope.formValid = false;
+                return false;
+            }
+        }
         $scope.registerUser = function() {
-            userAPIService
+            var isFormValid = validateForm($scope.registerForm);
+            if (isFormValid) {
+                $scope.successMsg = '';
+                $scope.errorMsg = '';
+                userAPIService
                 .addUser($scope.user)
-                    .success(function(response) {
+                    .then(function(response) {
+                        var result = response.data;
+                        if (result.success) {
+                            $scope.user = null;
+                            $scope.registerForm.$setPristine();
+                            $scope.successMsg = 'Thank you for registering. Please login to continue.';
+                        } else {
+                            $scope.errorMsg = result.message;
+                        }
                         //$scope.postsList = response.posts;
                         console.log('success');
-                    });
+                    }, failureHandler);
+            }
         };
         
                 

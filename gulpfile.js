@@ -51,7 +51,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('sass', function() {
-    return gulp.src('css/sv-styles.scss')
+    return gulp.src('css/ls-styles.scss')
         .pipe(plumber())
         .pipe(sourcemaps.init())
             .pipe(sass({
@@ -85,8 +85,6 @@ gulp.task('vendorScripts', function() {
             'bower_components/**/angular.js',
             'bower_components/**/angular-resource.js',
             'bower_components/**/dist/jquery.js',
-            'bower_components/**/highcharts.js',
-            'bower_components/**/modules/exporting.js',
             'bower_components/**/assets/javascripts/bootstrap.js',
             'bower_components/**/release/angular-ui-router.min.js',
             'bower_components/**/ui-bootstrap-tpls.js',
@@ -94,7 +92,9 @@ gulp.task('vendorScripts', function() {
             'bower_components/**/underscore.js',
             'bower_components/**/scrollglue.js',
             'bower_components/**/ng-file-upload-all.min.js',
-            'bower_components/**/angular-idle.min.js'
+            'bower_components/**/angular-idle.min.js',
+            'bower_components/**/angucomplete-alt.min.js',
+            'bower_components/**/jssor.slider.mini.js'
         ])
         .pipe(plumber())
         .pipe(concat('vendor.js'))

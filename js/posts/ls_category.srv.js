@@ -18,6 +18,13 @@ angular.module('Letshare').factory('categoryAPIService',
                 params: filterParams,
             });
         };
+
+        categoryService.getCategoryFields = function(categoryId) {
+            return $http({
+                method: 'GET',
+                url: ENV.api + 'category/fields/' + categoryId
+            });
+        };
         
         return categoryService;
     }

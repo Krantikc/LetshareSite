@@ -1,18 +1,18 @@
 <!-- main menu for desktop, tablet and mobile -->
-<div id="sv-main-menu-container"  ng-controller="Menu" resize>
-    <div class="sv-navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#sv-navbar" aria-expanded="false" aria-controls="navbar">
+<div id="ls-main-menu-container"  ng-controller="Menu" resize>
+    <div class="ls-navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#ls-navbar" aria-expanded="false" aria-controls="navbar">
         </button>
     </div>
-    <div id="sv-navbar" class="navbar-collapse collapse" aria-expanded="false" navbar>
-        <ul class="sv-main-menu-list nav navbar-nav" >
-            <li class="sv-menu-list-ls">
-                <a ui-sref="view" ui-sref-active="current">{{view}}</a>
+    <div id="ls-navbar" class="navbar-collapse collapse" aria-expanded="false" navbar>
+        <ul class="ls-main-menu-list nav navbar-nav" >
+            <li class="ls-menu-list-ls">
+                <a ui-sref="home" ui-sref-active="current">{{home}}</a>
             </li>
             
             
-            <li class="sv-menu-list-ls pull-right">
-              <div class="btn-group account-btn" ng-if="$root.currentUser">
+            <li class="ls-menu-list-ls pull-right" ng-if="$root.currentUser">
+              <div class="btn-group account-btn" >
                 <a class="btn dropdown-toggle" data-toggle="dropdown">
                   {{$root.currentUser.email}}
                   <span class="caret"></span>
@@ -30,8 +30,23 @@
             </li>
             
             
+            
+            <li class="login-register pull-right" style="margin-right: 10px" ng-if="!$root.currentUser">
+              <a ui-sref="user.register" ui-sref-active="current">{{register}}</a>
+            </li>
+            <li class="login-register pull-right" ng-if="!$root.currentUser">
+              <a>/</a>
+            </li>
+            <li class="login-register pull-right" ng-if="!$root.currentUser">
+              <a ui-sref="login" ui-sref-active="current">{{login}}</a>
+            </li>
+            
+             <li class="pull-right" ui-sref="posts.new" id="post-btn">
+                Submit Free Ad
+             </li>
+             
             <!--
-            <li class="sv-menu-list-ls pull-right">
+            <li class="ls-menu-list-ls pull-right">
                 <a ui-sref="account" ui-sref-active="current">{{$root.currentUser.email}}</a>
                 
                 <ul>
@@ -42,7 +57,7 @@
             </li>
             -->
         </ul>
-        <div class="sv-spacer-bar"></div>
+        <div class="ls-spacer-bar"></div>
     </div><!--/.nav-collapse -->
 </div>
 

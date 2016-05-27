@@ -23,12 +23,8 @@ angular.module('Letshare').controller('Menu', ['$scope', '$rootScope', '$statePa
         $scope.svLocale = svLocale;
 
         $scope.home = svLocale.translate('home');
-        $scope.view = svLocale.translate('view');
-        $scope.control = svLocale.translate('control');
-        $scope.monitor = svLocale.translate('monitor');
-        $scope.report = svLocale.translate('report');
-        $scope.manage = svLocale.translate('manage');
-        $scope.tools = svLocale.translate('tools');
+        $scope.login = svLocale.translate('login');
+        $scope.register = svLocale.translate('register');
         $scope.settings = svLocale.translate('settings');
         $scope.translation = svLocale.getSelectedLanguage().value.substring(0, 2);
 

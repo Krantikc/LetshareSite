@@ -19,6 +19,13 @@ angular.module('Letshare').factory('postsAPIService',
                 params: filterParams,
             });
         };
+        
+        postsService.getPostById = function(postId) {
+            return $http({
+                method: 'GET',
+                url: ENV.api + 'post/' + postId
+            });
+        };
             
         postsService.addPost = function(post) {
             return Upload.upload({
