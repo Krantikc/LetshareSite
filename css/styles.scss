@@ -964,7 +964,6 @@ ul.ls-main-menu-list a.current {
     .categories-block {
         border: 1px solid #EBEBEB;
         padding: auto;
-        text-align: center;
         overflow: auto;
         margin: auto;
         .category {
@@ -1202,8 +1201,12 @@ ul.ls-main-menu-list a.current {
         background-color: #F9F9F9;
         
         .details-bock {
-            
-            height: 400px;
+            overflow-wrap: break-word;
+		    text-align: justify;
+		    background: white;
+		    padding: 15px 0px;
+		    border: 1px solid #EBEBEB;
+		    min-height: 410px;
         }
     }
 }

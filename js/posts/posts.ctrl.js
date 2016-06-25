@@ -497,6 +497,8 @@ angular.module('Letshare').controller('PostsDetailsController', ['$scope', '$sta
         postsAPIService.getPostById($stateParams.id).then(function(response) {
             var result = response.data;
             $scope.post = result.post;
+
+            
         }, function() {
             console.log('ERROR');
         })

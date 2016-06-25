@@ -12,47 +12,65 @@
         <fieldset class="col-md-12">
             <div class="col-md-12">
               <label>Title</label>
-              <div class="col-md-12">
+              <p>
                 {{post.title}}
-              </div>
+              </p>
             </div>
 
             <div class="col-md-12">
               <label>Description</label>
               <p >
-               DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription
-               DescriptionDescriptionDescriptionDescriptionDescriptionDescription
-               Description
-               DescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescriptionDescription
+               {{post.description}}
               </p>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-6">
+              <label>Type</label>
+              <p>
+                {{post.postType}}
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <label>Type</label>
+              <p>
+                {{post.postLocation | object}}
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <label>Journey Date</label>
+              <p>
+                {{post.processDate | date}}
+              </p>
+            </div>
+
+            <div class="col-md-6">
               <label>Brand</label>
-              <div class="col-md-12">
+              <p>
                 {{post.postDetails.brand}}
-              </div>
+              </p>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-6">
               <label>Unique Id</label>
-              <div class="col-md-12">
+              <p>
                 {{post.postDetails.uniqueId}}
-              </div>
+              </p>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-6">
               <label>Capacity</label>
-              <div class="col-md-12">
+              <p>
                 {{post.postDetails.capacity}}
-              </div>
+              </p>
             </div>
 
-            <div class="col-md-12">
+            <div class="col-md-6">
               <label>Availability</label>
-              <div class="col-md-12">
+              <p>
                 {{post.postDetails.availability}}
-              </div>
+              </p>
             </div>
         </fieldset>
       </div>
