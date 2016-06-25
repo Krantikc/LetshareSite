@@ -1,0 +1,52 @@
+<div id="ls-uesr-posts-list" class="row">
+
+    <div class="col-md-8 centered panel">
+      <div class="page-header text-center">
+        <h3>My Posts</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6 centered">
+            <div class="col-md-6 text-center">
+              <input type="radio" id="active" value="true" name="activePost" ng-model="activePost"/>
+              <label for="active">Active</label>
+            </div>
+            <div class="col-md-6 text-center">
+              <input type="radio" id="inactive" value="false" name="activePost" ng-model="activePost"/>
+              <label for="inactive">Inactive</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div ng-if="postsList.length>0"
+               ng-repeat="post in postsList"  
+               class="col-md-12 item">
+
+            <div class="col-md-12 details-block">
+
+              <div class="col-md-8">
+                <div class="col-md-12 text-bold">
+                  <b>{{post.title}}</b>
+                </div>
+                <div class="col-md-8 text-bold">
+                  <i>{{post.postedDate | date}}</i>
+                </div>
+              </div>
+              <div class="col-md-4" ng-if="activePost == 'true'">
+                <button class="btn btn-default pull-right" ui-sref="posts.edit({postId: post.postId})">Edit</button>
+              </div>
+              <div class="col-md-4"  ng-if="activePost == 'false'">
+                <button class="btn btn-default pull-right">Activate</button>
+              </div>
+            </div>
+
+          </div>
+            
+          <div class="col-md-8 centered text-center" ng-if="postsList.length==0">
+            No results found
+          </div>
+        </div>
+      </div>
+    </div>
+
+</div>

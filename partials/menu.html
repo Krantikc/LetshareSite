@@ -7,7 +7,7 @@
     <div id="ls-navbar" class="navbar-collapse collapse" aria-expanded="false" navbar>
         <ul class="ls-main-menu-list nav navbar-nav" >
             <li class="ls-menu-list-ls">
-                <a ui-sref="home" ui-sref-active="current">{{home}}</a>
+                <a target="_self" ui-sref="home" ui-sref-active="current">{{home}}</a>
             </li>
             
             
@@ -18,11 +18,20 @@
                   <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                  <li ui-sref="user.settings">
-                    Settings
+                  <li>
+                    <a target="_self" ui-sref="user.settings">
+                      Settings
+                    </a>
                   </li>
-                  <li ui-sref="user.logout">
-                    Logout
+                  <li>
+                    <a target="_self" ui-sref="user.posts">
+                      My Posts
+                    </a>
+                  </li>
+                  <li>
+                    <a target="_self" ui-sref="user.logout">
+                      Logout
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -32,17 +41,17 @@
             
             
             <li class="login-register pull-right" style="margin-right: 10px" ng-if="!$root.currentUser">
-              <a ui-sref="user.register" ui-sref-active="current">{{register}}</a>
+              <a target="_self" ui-sref="user.register" ui-sref-active="current">{{register}}</a>
             </li>
             <li class="login-register pull-right" ng-if="!$root.currentUser">
               <a>/</a>
             </li>
             <li class="login-register pull-right" ng-if="!$root.currentUser">
-              <a ui-sref="login" ui-sref-active="current">{{login}}</a>
+              <a target="_self" ui-sref="login" ui-sref-active="current">{{login}}</a>
             </li>
             
-             <li class="pull-right" ui-sref="posts.new" id="post-btn">
-                Submit Free Ad
+             <li class="pull-right"  id="post-btn">
+              <a target="_self" ui-sref="posts.new" ui-sref-active="current">Submit Free Ad</a> 
              </li>
              
             <!--

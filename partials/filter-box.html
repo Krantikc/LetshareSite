@@ -1,23 +1,107 @@
-<div class="col-md-8 centered filter-block">
-    <div class="col-md-3 area-selector" data-toggle="collapse" data-target="#demo">
-      <span class="city-name">{{selectedCity.name}}</span>
+<!-- 1st filter box, with common filters -->
+<div class="col-md-8 centered filter-block general">
+    
+    <!--  Category filter -->
+    <div class="col-md-3"
+        isteven-multi-select
+        input-model="categoriesList"
+        output-model="selectedCategory"
+        button-label="name"
+        item-label="icon name"
+        tick-property="ticked"
+        selection-mode="single"
+        group-property="msGroup"
+    >
+    </div>
+    <div class="col-md-2 area-selector filter-control" data-toggle="collapse" data-target="#demo" ng-show="!isVisibleField('toLocation')">
+      <span class="city-name">{{selectedCity1.name}}</span>
       <div class="chevron">
         <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
       </div>
     </div>
-    <select class="col-md-3 type-selector" ng-model="selection.postType" ng-init="selection.postType = 'share'">
+    
+    <select class="col-md-2 type-selector filter-control" ng-model="selection.postType" ng-init="selection.postType = 'share'">
       <option value="share">Share</option>
       <option value="requirement">Requirement</option>
     </select>
-    <div class="col-md-5 search-post">
+    
+    <div class="col-md-4 search-post">
       <input ng-model="searchTitle" 
              type="text" 
              placeholder="Search here eg, Taxi, Bike, Tractor etc"/>
     </div>
-    <div class="col-md-2 search-icon" ng-click="getPosts(selectedCity, 0, searchTitle)">
+    <div class="col-md-2 search-icon" ng-click="getPosts(selectedCategory[0], 
+                                                         selection.postType,
+                                                         searchTitle, 
+                                                         journeyDate,
+                                                         selectedCity1, 
+                                                         selectedLocation1, 
+                                                         selectedCity2, 
+                                                         selectedLocation2)">
       
     </div>
+    <div class="col-md-2 search-icon" ng-click="resetFilters()">
+      
+    </div>
+
   </div>
+
+<!-- 2nd filter box, with filters related to RIDE category -->
+  <div class="col-md-8 centered filter-block advanced" ng-show="visbleField">
+    <!-- Location 1 -->
+    <div class="col-md-4">
+      <div class="col-md-6"> 
+        
+        <label for="city">From City</label>
+        <select ng-required="true" 
+                ng-model="selectedCity1" 
+                ng-options="city as city.name for city in cities"
+                
+                class="form-control filter-control"></select>
+
+      </div>
+      <div class="col-md-6">
+        <label for="city">From Location</label>
+        <select ng-required="true" 
+                ng-model="selectedLocation1" 
+                ng-options="location.name for location in fromLocations"
+                class="form-control filter-control"></select>
+      </div>
+    </div>
+  
+    <!-- Location 2 -->
+    <div class="col-md-4">
+      <div class="col-md-6"> 
+        
+        <label for="city">To City</label>
+        <select ng-required="true" 
+                ng-model="selectedCity2" 
+                ng-options="city.name for city in cities"
+               
+                class="form-control filter-control"></select>
+      </div>
+      <div class="col-md-6">
+        <label for="city">To Location</label>
+        <select ng-required="true" 
+                ng-model="selectedLocation2" 
+                ng-options="location.name for location in toLocations"
+                class="form-control filter-control"></select>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+        <label for="location">Journey Date</label>
+        <p class="input-group">
+          <input type="text" class="form-control filter-control" uib-datepicker-popup="{{format}}" ng-model="journeyDate" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default filter-control" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+        </p>
+    </div>
+    
+  </div>
+
+  <!-- Area selection collapsible block -->
   <div class="col-md-8 centered area-selection-box collapse" id="demo">
       <div class="col-md-8 search-box">
           <angucomplete-alt 

@@ -1,10 +1,12 @@
 
-angular.module('Letshare').controller('UserPostsController', ['$scope', '$http', 'svLocale', 'postsAPIService',
-    function($scope, $http, svLocale, postsAPIService) {
+angular.module('Letshare').controller('UserPostsController',
+    function($rootScope, $scope, $http, svLocale, postsAPIService) {
  
+        $scope.activePost = 'true';
         $scope.getPosts = function() {
+
             postsAPIService
-                .getPosts({title: 'n'})
+                .getPostsByUserId($rootScope.currentUser.userId, $scope.activePost)
                     .success(function(response) {
                         $scope.postsList = response.posts;
                         console.log('success');
@@ -21,7 +23,7 @@ angular.module('Letshare').controller('UserPostsController', ['$scope', '$http',
                     });
         };
 
-    }
-    
-        
-]);
+        $scope.$watch('activePost', function(newVal, oldVal) {
+            $scope.getPosts();
+        }, true);
+    });

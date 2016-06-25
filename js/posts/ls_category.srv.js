@@ -7,7 +7,7 @@ angular.module('Letshare').factory('categoryAPIService',
         categoryService.getAllCategories = function() {
             return $http({
                 method: 'GET',
-                url: ENV.api + 'category/all'
+                url: ENV.api + 'category/all/nested'
             });
         };
         

@@ -1,6 +1,7 @@
-var app = angular.module('app', ['app.config', 'ui.router', 'ngResource', 'Letshare', 'ui.bootstrap', 'underscore']);
+angular.module('Letshare', ['app.config', 'ui.router', 'ngResource', 'Letshare', 'ui.bootstrap', 'underscore',
+                                 'isteven-multi-select', 'ngFileUpload', 'ngIdle', 'angucomplete-alt']);
 
-app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', 
+angular.module('Letshare').config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationProvider', 
         function($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider) {
         //unmactched URLs return to monitor page
         $urlRouterProvider.otherwise('/home');
@@ -27,13 +28,28 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationP
                 url: '/user',
                 templateUrl: 'partials/user.html',
                 controller: 'UserController',
-                parent: 'app'
+                parent: 'app',
+                authenticate: true
             })
            .state('user.register', {
                 url: '/register',
                 templateUrl: 'partials/user/user-register.html',
                 controller: 'UserController',
                 parent: 'user'
+            })
+           .state('user.settings', {
+                url: '/settings',
+                templateUrl: 'partials/user/user-settings.html',
+                controller: 'UserSettingsController',
+                parent: 'user',
+                authenticate: true
+            })
+            .state('user.posts', {
+                url: '/posts',
+                templateUrl: 'partials/user/user-posts.html',
+                controller: 'UserPostsController',
+                parent: 'user',
+                authenticate: true
             })
             .state('user.logout', {
                 url: '/logout',
@@ -44,9 +60,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationP
                 url: '/posts',
                 templateUrl: 'partials/posts.html',
                 params: {
-                    cityId: 0,
+                    city1Id: 0,
+                    location1Id: 0,
+                    city2Id: 0,
+                    location2Id: 0,
                     searchTitle: '',
-                    categoryId: 0
+                    categoryId: 0,
+                    postType: 'share',
+                    processDate: null
                 },
                 parent: 'app',
                 authenticate: false
@@ -54,9 +75,15 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationP
             .state('posts.list', {
                 url: '/list',
                 params: {
-                    cityId: 0,
+                    city1Id: 0,
+                    location1Id: 0,
+                    city2Id: 0,
+                    location2Id: 0,
                     searchTitle: '',
-                    categoryId: 0
+                    categoryId: 0,
+                    postType: 'share',
+                    processDate: null
+
                 },
                 templateUrl: 'partials/posts/posts-list.html',
                 controller: 'PostsController',
@@ -70,6 +97,16 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationP
                 parent: 'posts',
                 authenticate: true
             })
+            .state('posts.edit', {
+                url: '/edit',
+                params: {
+                    postId: 0
+                },
+                templateUrl: 'partials/posts/posts-edit.html',
+                controller: 'PostsEditController',
+                parent: 'posts',
+                authenticate: true
+            })
             .state('posts.details', {
                 url: '/:id',
                 templateUrl: 'partials/posts/posts-details.html',
@@ -80,13 +117,13 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationP
             
             $httpProvider.interceptors.push('authInterceptor');
             
-            $httpProvider.defaults.withCredentials = true;
+            //$httpProvider.defaults.withCredentials = true;
 
             $locationProvider.html5Mode(true);
 
     }]);
 
-    app.run(['$rootScope',  '$state', '$location', 'LoginService', function($rootScope,  $state, $location, LoginService) {
+    angular.module('Letshare').run(['$rootScope',  '$state', '$location', 'LoginService', function($rootScope,  $state, $location, LoginService) {
         $rootScope.$on('$stateChangeStart', function(evt, to, params) {
             $rootScope.currentUser = JSON.parse(window.localStorage.getItem('currentUser'));
             if (to.authenticate) {
@@ -104,8 +141,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationP
                     } 
                 });
             }
+            
         });
     }]);
 
-angular.module('Letshare', ['app.config', 'ui.router', 'ui.bootstrap',
-    'isteven-multi-select', 'ngFileUpload', 'ngIdle', 'angucomplete-alt']);

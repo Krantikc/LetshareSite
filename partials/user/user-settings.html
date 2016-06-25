@@ -1,0 +1,119 @@
+<div id="ls-register-user-container" class="row">
+  <div class="col-md-2 centered">
+      <div class="text-center"> User Settings</div>
+  </div>
+  <div class="col-md-5 centered ls-block user-settings-form" ng-show="user">
+    <form name="userForm" ng-submit="updateUser()" novalidate >
+    <fieldset>  
+      <fieldset class="form-group col-lg-10 centered">
+        <p ng-show="userForm.$valid && successMsg" class="success-msg text-center">{{successMsg}}</p>
+        <p ng-show="userForm.$valid && errorMsg" class="error-msg text-center margin-b-10">{{errorMsg}}</p>
+      </fieldset>
+    </fieldset>
+    <fieldset>
+      <fieldset class="form-group col-lg-6">
+        <input type="text" 
+               name="firstName"
+               ng-model="user.firstName" 
+               class="form-control"  
+               placeholder="First Name"
+               ng-minlength="3"
+               ng-maxlength="25"
+               required>
+        
+        <p ng-show="!userForm.$valid && userForm.firstName.$error.required" class="error-msg">First Name is required</p>
+        <p ng-show="!userForm.$valid && userForm.firstName.$error.minlength" class="error-msg">First name is too short.</p>
+        <p ng-show="!userForm.$valid && userForm.firstName.$error.maxlength" class="error-msg">First name is too long.</p>
+      </fieldset>
+      
+      <fieldset class="form-group col-lg-6">
+        <input type="text" 
+               name="lastName" 
+               ng-model="user.lastName"  
+               class="form-control"  
+               placeholder="Last Name"
+               ng-minlength="3"
+               ng-maxlength="25"
+               required>
+        <p ng-show="!userForm.$valid && userForm.lastName.$error.required" class="error-msg">Last Name is required</p>
+        <p ng-show="!userForm.$valid && userForm.lastName.$error.minlength" class="error-msg">Last name is too short.</p>
+        <p ng-show="!userForm.$valid && userForm.lastName.$error.maxlength" class="error-msg">Last name is too long.</p>
+      </fieldset>
+    </fieldset>  
+    
+    <fieldset>
+      <fieldset class="form-group col-lg-7">
+        <input type="number" 
+               name="mobile" 
+               ng-model="user.mobile"  
+               class="form-control"
+               placeholder="Mobile"
+               max="9999999999"
+               ng-minlength="10"
+               ng-maxlength="10"
+               required>
+        <p ng-show="!userForm.$valid && userForm.mobile.$error.required" class="error-msg">Mobile is required</p>
+        <p ng-show="!userForm.$valid && userForm.mobile.$error.minlength" class="error-msg">Enter valid mobile number.</p>
+        <p ng-show="!userForm.$valid && userForm.mobile.$error.maxlength" class="error-msg">Enter valid mobile number.</p>
+      </fieldset>
+      
+      <fieldset class="form-group col-lg-7">
+        <input type="email" 
+               name="email" 
+               ng-model="user.email"  
+               class="form-control" 
+               placeholder="Email"
+               required>
+        <p ng-show="!userForm.$valid && userForm.email.$error.required" class="error-msg">Email is required</p>
+        <p ng-show="!userForm.$valid && userForm.email.$error.email" class="error-msg">Enter valid email</p>
+      </fieldset>
+    </fieldset>
+
+      <fieldset class="form-group col-lg-12 centered">
+        <button class="btn ls-btn" type="submit" ng-disabled="!userForm.$valid">Save</button>
+      </fieldset>
+    </form>
+
+
+  </div>
+
+
+  <div class="col-md-5 centered ls-block"  ng-show="user">
+    <form name="passwordForm" class="col-md-8 centered" ng-submit="changeUserPassword()" novalidate>
+      <div class="form-group">
+        <input type="password" 
+               class="form-control" 
+               name="currentPassword"
+               ng-model="currentPassword" 
+               placeholder="Current Password" 
+               required />
+        <p ng-show="(passwordForm.$dirty && !passwordForm.$valid) && passwordForm.currentPassword.$error.required" class="error-msg">Password is required</p>
+      </div>
+      <div class="form-group">
+        <input type="password" 
+               class="form-control" 
+               name="newPassword"
+               ng-model="newPassword" 
+               placeholder="New Password" 
+               required />
+        <p ng-show="(passwordForm.$dirty && !passwordForm.$valid) && passwordForm.newPassword.$error.required" class="error-msg">New Password is required</p>
+        <p ng-show="(passwordForm.$dirty && !passwordForm.$valid) && passwordForm.newPassword.$error.minlength" class="error-msg">New Password should contains min of 6 characters.</p>
+        <p ng-show="(passwordForm.$dirty && !passwordForm.$valid) && passwordForm.newPassword.$error.maxlength" class="error-msg">New Password should contains max of 12 characters.</p>
+      </div>
+      <div class="form-group">
+        <input type="password" 
+               class="form-control"
+               name="confirmPassword"
+               ng-model="confirmPassword" 
+               placeholder="Confirm Password" 
+               required/>
+        <p ng-show="(passwordForm.$dirty && !passwordForm.$valid) && passwordForm.confirmPassword.$error.required" class="error-msg">Confirm Password is required</p>
+
+      </div>
+      <p ng-show="(confirmPassword.length > 0 && newPassword === confirmPassword)">right</p>
+      <div>
+        <button type="submit" class="btn ls-btn" ng-disabled="!passwordForm.$valid || (confirmPassword.length > 0 && (newPassword !== confirmPassword))">Change Password</button>
+      </div>
+    </form>
+  </div>
+</div>

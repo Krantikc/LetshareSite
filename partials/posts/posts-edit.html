@@ -7,7 +7,6 @@
     
       <div class="col-md-12 centered ls-block new-post-form">
         <form  name="postForm" ng-submit="submitPost()" novalidate>
-          <!-- Post Title -->
           <fieldset class="form-group col-lg-12">
             <label for="title">Title</label>
             <input ng-model="post.title" 
@@ -23,7 +22,6 @@
               <p ng-show="!formValid && postForm.title.$error.maxlength" class="error-msg">Title should not exceed 120 characters.</p>
           </fieldset>
           
-          <!-- Category -->
           <div class="row">
             <fieldset class="form-group col-lg-8">
               <label for="category">Category</label>
@@ -32,35 +30,25 @@
                 ng-options="category as category.name for category in categoriesList" 
                 ng-model="post.category"  required>
               </select> -->
-              <p ng-show="!formValid && post.category.length == 0" class="error-msg">Category is required</p>
-              <div
-                  isteven-multi-select
-                  input-model="categoriesList"
-                  output-model="post.category"
-                  button-label="name"
-                  item-label="icon name"
-                  tick-property="ticked"
-                  selection-mode="single"
-                  group-property="msGroup"
-              >
+              <div>
+              {{selectedCategory.name}}
               </div>
             </fieldset>
           </div>
 
-          <!-- Post type (Share or Requirement) -->
           <div class="row" ng-init="post.type='share'">
             <fieldset class="form-group col-lg-8">
               <label for="type">Type</label>
               <select class="form-control"
                 ng-required="true"
-                ng-model="post.type"  required>
+                ng-model="post.postType"  required>
                 <option value="share" >Share</option>
                 <option value="requirement">Requirement</option>
               </select>
             </fieldset>
           </div>
 
-          <!-- Location 1 -->
+          
           <fieldset class="form-group col-lg-12">
             <label for="description">Description</label>
             <textarea rows="{{textAreaRows}}" 
@@ -85,7 +73,6 @@
             <legend  ng-if="isVisibleField('toLocation')">From Location </legend>
             <legend  ng-if="!isVisibleField('toLocation')">Location </legend>
             
-             <!-- City 1 -->
             <fieldset class="form-group col-lg-5">
               <label for="city">City</label><br/>
               <select ng-required="true" 
@@ -94,7 +81,6 @@
                       ng-change="citySelectionChange(post.city1, 'from')"
                       class="form-control"></select>
             </fieldset>
-             <!-- Area 1 -->
             <fieldset class="form-group col-lg-5" ng-show="post.city1">
               <label for="location">Location</label><br/>
               <select ng-required="true" 
@@ -108,7 +94,6 @@
           <fieldset class="ls-fieldset-block" ng-if="isVisibleField('toLocation')">
             <legend>To Location </legend>
             <fieldset class="form-group col-lg-5">
-               <!-- City 2 -->
               <label for="city">City</label><br/>
               <select ng-required="true" 
                       ng-model="post.city2" 
@@ -116,7 +101,6 @@
                       ng-change="citySelectionChange(post.city2, 'to')"
                       class="form-control"></select>
             </fieldset>
-             <!-- Area 2 -->
             <fieldset class="form-group col-lg-5" ng-show="post.city2">
               <label for="location">Location</label><br/>
               <select ng-required="true" 
@@ -127,16 +111,6 @@
             </fieldset>
             
             
-          </fieldset>
-
-          <fieldset class="ls-fieldset-block" ng-if="isVisibleField('toLocation')">
-            <label for="location">Journey Date</label>
-            <div class="input-group col-md-5">
-              <input type="text" class="form-control col-lg-5" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-              <span class="input-group-btn">
-                <button type="button" class="btn btn-default filter-control" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
-              </span>
-            </div>
           </fieldset>
           
           <!--
@@ -156,7 +130,6 @@
           
           -->
         
-          <!-- Brand -->
           <fieldset>
             <fieldset class="form-group col-lg-10" ng-if="isVisibleField('brand')">
               <label for="brand">Brand</label>
@@ -169,7 +142,6 @@
             </fieldset>
           </fieldset>
           
-          <!-- Capacity -->
           <fieldset class="form-group">
             <fieldset class="form-group  col-lg-6" ng-if="isVisibleField('capacity')">
               <label for="city">Capacity</label>
@@ -178,11 +150,10 @@
             
             <fieldset class="form-group col-lg-4" ng-if="isVisibleField('capacity')">
               <label for="unique-id">&nbsp</label>
-              <select class="form-control" ng-model="post.measurement" ng-options="measurement as measurement.label for measurement in measurements"></select> <!-- sync with availability -->
+              <select class="form-control" ng-model="post.measurement" ng-options="measurement.label for measurement in measurements"></select> <!-- sync with availability -->
             </fieldset>
           </fieldset>
           
-          <!-- Availability -->
           <fieldset class="form-group">
             <fieldset class="form-group col-lg-6" ng-if="isVisibleField('availability')">
               <label for="unique-id">Availability</label>
@@ -191,34 +162,29 @@
             
             <fieldset class="form-group col-lg-4" ng-if="isVisibleField('availability')">
               <label for="unique-id">&nbsp</label>
-              <select class="form-control" ng-model="post.measurement" ng-options="measurement as measurement.label for measurement in measurements"></select> <!-- sync with availability -->
+              <select class="form-control" ng-model="post.measurement" ng-options="measurement.label for measurement in measurements"></select> <!-- sync with availability -->
             </fieldset>
           </fieldset>
           
-          <!-- Amenities -->
           <fieldset class="form-group col-lg-10" ng-if="isVisibleField('amenities')">
             <label for="unique-id">Amenities</label>
             <input ng-model="post.amenities" type="text" class="form-control" id="amenities" placeholder="AC, Car Parking, Security etc">
           </fieldset>
-
-          <!-- Age -->
           <fieldset class="form-group col-lg-6" ng-if="isVisibleField('age')">
             <label for="unique-id">Age</label>
-            <input ng-model="post.age" type="text" class="form-control" id="age" placeholder="Age of posted resource">
+            <input ng-model="post.age" type="text" class="form-control" id="age" placeholder="Age">
           </fieldset>
           <fieldset class="form-group  col-lg-4" ng-if="isVisibleField('age')">
             <label for="unique-id">&nbsp</label>
             <select class="form-control" ng-model="post.ageType" ng-options="agePeriod as agePeriod.label for agePeriod in agePeriods"></select> <!-- sync with availability -->
           </fieldset>
 
-          <!-- Display Contact Details -->
           <fieldset class="form-group  col-lg-12">
             <input id="display-contact" type="checkbox" ng-model="post.displayContactDetails"> 
             <label for="display-contact">Display Contact Details</label>
           </fieldset>
 
-          <!-- Upload 3 Images -->
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-4" >
               <div class="drop-box"
                    ngf-select 
@@ -264,9 +230,8 @@
                 Select / Drop Image Here
               </div>
             </div>
-          </div>
+          </div> -->
           
-          <!-- Submit Post btn -->
           <div class="row">
             <div class="col-md-12 submit-btn-block" >
               <button class="form-control btn-success" id="posts-submit-btn">Submit</button>

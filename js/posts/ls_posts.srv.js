@@ -12,6 +12,14 @@ angular.module('Letshare').factory('postsAPIService',
             });
         };
         
+         postsService.getPostsByUserId = function(userId, active) {
+            return $http({
+                method: 'GET',
+                url: ENV.api + 'post/user',
+                params: {userId: userId, active: active},
+            });
+        };
+
         postsService.getPosts = function(filterParams) {
             return $http({
                 method: 'GET',
@@ -32,21 +40,6 @@ angular.module('Letshare').factory('postsAPIService',
                 url: ENV.api + 'post',
                 data: post
             });
-            /*
-            return $http({
-                method: 'POST',
-                url: ENV.api + 'post',
-                data: post,
-                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                transformRequest: function(obj) {
-                    var str = [];
-                    for(var p in obj)
-                        str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                        
-                    return str.join("&");
-                },
-            });
-            */
         };
         
         return postsService;

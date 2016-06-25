@@ -1,41 +1,41 @@
 
-angular.module('Letshare').factory('settingsAPIService',
+angular.module('Letshare').factory('userSettingsAPIService',
     function($http, ENV) {
         
-        var postsService = {};
+        var userSettingsService = {};
         
-        postsService.getAllPosts = function() {
+        userSettingsService.getUserById = function(userId) {
             return $http({
                 method: 'GET',
-                url: ENV.api + 'post',
-                params: {title: ''},
+                url: ENV.api + 'user/' + userId
             });
         };
-        
-        postsService.getPosts = function(filterParams) {
-            return $http({
-                method: 'GET',
-                url: ENV.api + 'post',
-                params: filterParams,
-            });
-        };
-            
-        postsService.addPost = function(post) {
+
+        userSettingsService.updateUser = function(user) {
             return $http({
                 method: 'POST',
-                url: ENV.api + 'post',
-                data: post,
+                url: ENV.api + 'user',
+                data: user
+            });
+        };
+
+        userSettingsService.changeUserPassword = function(user) {
+            return $http({
+                method: 'POST',
+                url: ENV.api + 'user/password',
+                data: user,
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
                 transformRequest: function(obj) {
                     var str = [];
-                    for(var p in obj)
+                    for(var p in obj) {
                         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                        
+                    }      
                     return str.join("&");
-                },
+                }
             });
         };
         
-        return postsService;
+      
+        return userSettingsService;
     }
 );

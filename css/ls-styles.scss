@@ -787,18 +787,40 @@ ul.ls-main-menu-list a.current {
         box-shadow: 0px 0px 20px #EBEBEB;
     }
 }
-  
+
+@media screen and (max-width: 1900px) {
+	.general {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		height: 45px;
+	}
+
+	.advanced {
+		height: 70px;
+	}
+}
+
+@media screen and (max-width: 760px) {
+	.general {
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		height: 170px;
+	}
+
+	.advanced {
+		height: 285px;
+	}
+}
+
 .filter-block {
-    border: 1px solid #EBEBEB;
+	border: 1px solid #FFF;
     padding: 5px;
-    overflow: auto;
     background: beige;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     
-    
-    .area-selector, .type-selector {
-        height: 30px;
+	
+
+    .filter-control {
+    	height: 30px;
         padding-top: 3px;
         border-radius: 3px;
         border: 1px solid transparent;
@@ -807,6 +829,9 @@ ul.ls-main-menu-list a.current {
         background: white;
         
         cursor: pointer;
+    }
+    
+    .area-selector, .type-selector {
         
         .city-name {
             vertical-align: sub;
@@ -894,14 +919,47 @@ ul.ls-main-menu-list a.current {
         }
     }
 }
-  
+ 
+.multiSelect {
+	> button {
+	    display: inline-block;
+	    position: relative;
+	    cursor: pointer;
+	    border: none;
+	    text-align: left;
+	    border-radius: 2px;
+	    border-bottom: 1px solid #DDD;
+	    padding: 1px 8px 1px 8px;
+	    font-size: 14px;
+	    min-height: 30px !important;
+	    width: 100%;
+	    color: #555;
+	    -webkit-user-select: none;
+	    -moz-user-select: none;
+	    -ms-user-select: none;
+	    -o-user-select: none;
+	    user-select: none;
+	    white-space: normal;
+	    background: white;
+
+	    &:hover {
+	    	background: white;
+	    }
+	}
+	.caret {
+		margin: 7px 0px 1px 12px !important;
+		float: right;
+	}
+	.buttonLabel {
+		width: 100%;
+	}
+}
 
 /* Home Page */
 #ls-home {
   padding-top: 7px;
-  overflow: auto;
-  
-    
+
+
     
     .categories-block {
         border: 1px solid #EBEBEB;
@@ -1056,6 +1114,12 @@ ul.ls-main-menu-list a.current {
         max-width: 602px;
         padding: 30px;
         right: 0px;
+
+        .multiSelect {
+			> button {
+			    border: 1px solid #ccc;
+			}
+	    }
         .drop-box {
             background: #F8F8F8;
             border: 3px dashed #DDD;
@@ -1114,7 +1178,7 @@ ul.ls-main-menu-list a.current {
         border: 1px solid #EBEBEB;
         
         .item {
-            height: 100px;
+            height: 100%;
             transition: all 0.5s ease;
             text-align: center;
             img {
@@ -1175,4 +1239,18 @@ ul.ls-main-menu-list a.current {
   }
   #post-btn:hover {
     text-decoration: underline;
+  }
+
+
+  #ls-uesr-posts-list {
+  	  .item {
+  	      
+  	    border-top: 1px solid #EBEBEB;
+    	height: 55px;
+    	padding: 10px 5px 0px 0px;
+
+  	      .img-block {
+  	      	  height: 30px;
+  	      }
+  	  }
   }

@@ -48,7 +48,7 @@ angular.module('Letshare').controller('Menu', ['$scope', '$rootScope', '$statePa
             }
         };
 
-        $document.bind('click', $scope.bindClick);
+        //$document.bind('click', $scope.bindClick);
 
     }
 ]);
