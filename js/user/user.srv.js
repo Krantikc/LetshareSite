@@ -21,9 +21,12 @@ angular.module('Letshare').factory('userAPIService',
             
         userService.addUser = function(user) {
             return $http({
-                method: 'POST',
+                method: 'PUT',
                 url: ENV.api + 'user',
-                data: user
+                data: user,
+                headers: {
+                    'Authorization': 'prelogin'
+                }
             });
         };
         

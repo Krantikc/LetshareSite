@@ -3,7 +3,7 @@ angular.module('Letshare').factory('authInterceptor', function() {
         request: function(config) {
             config.headers = config.headers || {};
             var token = 'Bearer access';
-            if (window.localStorage.token) {
+            if (window.localStorage.token && window.localStorage.token != 'undefined') {
                 token = 'Bearer ' + window.localStorage.token;
             }
             

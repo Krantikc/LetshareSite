@@ -19,7 +19,7 @@
                placeholder="First Name"
                ng-minlength="3"
                ng-maxlength="25"
-               required>
+               required/>
         
         <p ng-show="!userForm.$valid && userForm.firstName.$error.required" class="error-msg">First Name is required</p>
         <p ng-show="!userForm.$valid && userForm.firstName.$error.minlength" class="error-msg">First name is too short.</p>
@@ -34,7 +34,7 @@
                placeholder="Last Name"
                ng-minlength="3"
                ng-maxlength="25"
-               required>
+               required/>
         <p ng-show="!userForm.$valid && userForm.lastName.$error.required" class="error-msg">Last Name is required</p>
         <p ng-show="!userForm.$valid && userForm.lastName.$error.minlength" class="error-msg">Last name is too short.</p>
         <p ng-show="!userForm.$valid && userForm.lastName.$error.maxlength" class="error-msg">Last name is too long.</p>
@@ -42,7 +42,7 @@
     </fieldset>  
     
     <fieldset>
-      <fieldset class="form-group col-lg-7">
+      <fieldset class="form-group col-lg-6">
         <input type="number" 
                name="mobile" 
                ng-model="user.mobile"  
@@ -51,21 +51,58 @@
                max="9999999999"
                ng-minlength="10"
                ng-maxlength="10"
-               required>
+               required/>
         <p ng-show="!userForm.$valid && userForm.mobile.$error.required" class="error-msg">Mobile is required</p>
         <p ng-show="!userForm.$valid && userForm.mobile.$error.minlength" class="error-msg">Enter valid mobile number.</p>
         <p ng-show="!userForm.$valid && userForm.mobile.$error.maxlength" class="error-msg">Enter valid mobile number.</p>
       </fieldset>
       
-      <fieldset class="form-group col-lg-7">
+      <fieldset class="form-group col-lg-6">
         <input type="email" 
                name="email" 
                ng-model="user.email"  
                class="form-control" 
                placeholder="Email"
-               required>
+               required/>
         <p ng-show="!userForm.$valid && userForm.email.$error.required" class="error-msg">Email is required</p>
         <p ng-show="!userForm.$valid && userForm.email.$error.email" class="error-msg">Enter valid email</p>
+      </fieldset>
+
+      <fieldset class="form-group col-lg-10">
+        <input type="text" 
+               ng-model="user.userAddress.line1"  
+               class="form-control" 
+               placeholder="Address Line 1"/>
+      </fieldset>
+
+      <fieldset class="form-group col-lg-10">
+        <input type="text" 
+               ng-model="user.userAddress.line2"  
+               class="form-control" 
+               placeholder="Address Line 2"/>
+      </fieldset>
+
+      <fieldset class="form-group col-lg-6">
+        <input type="text" 
+               ng-model="user.userAddress.area"  
+               class="form-control" 
+               placeholder="Area"/>
+      </fieldset>
+
+      <fieldset class="form-group col-lg-6">
+        <input type="text" 
+               name="city" 
+               ng-model="user.userAddress.city"  
+               class="form-control" 
+               placeholder="City"/>
+      </fieldset>
+
+      <fieldset class="form-group col-lg-6">
+        <input type="text" 
+               name="state" 
+               ng-model="user.userAddress.state"  
+               class="form-control" 
+               placeholder="State"/>
       </fieldset>
     </fieldset>
 

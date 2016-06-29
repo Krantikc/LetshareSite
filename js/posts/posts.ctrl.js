@@ -491,17 +491,56 @@ angular.module('Letshare').controller('PostsEditController', ['$scope', '$http',
 ]);
 
 
-angular.module('Letshare').controller('PostsDetailsController', ['$scope', '$stateParams', 'svLocale', 'postsAPIService', 'categoryAPIService', 'Upload', 'locationsAPIService',
-    function($scope, $stateParams, svLocale, postsAPIService, categoryAPIService, Upload, locationsAPIService) {
+angular.module('Letshare').controller('PostsDetailsController', ['$scope', '$stateParams', 'svLocale', 'postsAPIService', 
+                                                                 'categoryAPIService', 'Upload', 'locationsAPIService', 'genericAPIService',
+    function($scope, $stateParams, svLocale, postsAPIService, categoryAPIService, Upload, locationsAPIService, genericAPIService) {
+
 
         postsAPIService.getPostById($stateParams.id).then(function(response) {
             var result = response.data;
             $scope.post = result.post;
+            var location = $scope.post.postLocation;
 
+            genericAPIService.getObject(location.city1Id, 'city').then(function(response) {
+                $scope.postFromCity = response.data.object;
+            });
+
+            genericAPIService.getObject(location.city2Id, 'city').then(function(response) {
+                $scope.postToCity = response.data.object;
+            });
+
+            genericAPIService.getObject(location.location1Id, 'location').then(function(response) {
+                $scope.postFromLocation = response.data.object;
+            });
+
+            genericAPIService.getObject(location.location2Id, 'location').then(function(response) {
+                $scope.postToLocation = response.data.object;
+            });
+
+            genericAPIService.getObject($scope.post.categoryId, 'category').then(function(response) {
+                $scope.postCategory = response.data.object;
+
+            });
             
         }, function() {
             console.log('ERROR');
-        })
+        });
+
+
+        locationsAPIService.getAllCities().then(function(response) {
+            var result = response.data;
+            $scope.cities = result.cities;
+        }, function() {
+            console.log('ERROR');
+        });
+
+        locationsAPIService.getAllLocations().then(function(response) {
+            var result = response.data;
+            $scope.locations = result.locations;
+        }, function() {
+            console.log('ERROR');
+        });
+
        
     }
     

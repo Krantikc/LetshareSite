@@ -13,7 +13,7 @@
             <div class="col-md-12">
               <label>Title</label>
               <p>
-                {{post.title}}
+                {{post.title}} -- {{$root.currentUser}}
               </p>
             </div>
 
@@ -32,11 +32,41 @@
             </div>
 
             <div class="col-md-6">
-              <label>Type</label>
+              <label>Category</label>
               <p>
-                {{post.postLocation | object}}
+                {{postCategory.name}}
               </p>
             </div>
+
+            <div class="col-md-6">
+              <label>From City</label>
+              <p>
+                {{postFromCity.name}}
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <label>From Location</label>
+              <p>
+                {{postFromLocation.name}}
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <label>To City</label>
+              <p>
+                {{postToCity.name}}
+              </p>
+            </div>
+
+            <div class="col-md-6">
+              <label>To Location</label>
+              <p>
+                {{postToLocation.name}}
+              </p>
+            </div>
+
+            
 
             <div class="col-md-6">
               <label>Journey Date</label>
@@ -53,7 +83,7 @@
             </div>
 
             <div class="col-md-6">
-              <label>Unique Id</label>
+              <label>Unique ID</label>
               <p>
                 {{post.postDetails.uniqueId}}
               </p>
@@ -72,6 +102,30 @@
                 {{post.postDetails.availability}}
               </p>
             </div>
+
+            <div class="col-md-6">
+              <label>Amenities</label>
+              <p>
+                {{post.postDetails.amenities}}
+              </p>
+            </div>
+        </fieldset>
+
+        <fieldset class="col-md-12">
+
+          <div class="col-md-6 centered text-center">
+              <label>Contact Details</label>
+              <p>
+                {{$root.currentUser.firstName }}  {{$root.currentUser.lastName}}
+              </p>
+              <p>
+                {{$root.currentUser.mobile }}
+              </p>
+               <p>
+                {{$root.currentUser.email }}
+              </p>
+          </div>
+
         </fieldset>
       </div>
     </div>

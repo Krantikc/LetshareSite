@@ -10,6 +10,13 @@ angular.module('Letshare').factory('locationsAPIService',
                 url: ENV.api + 'city'
             });
         };
+
+        locationsService.getAllLocations = function() {
+            return $http({
+                method: 'GET',
+                url: ENV.api + 'location'
+            });
+        };
         
         locationsService.getLocationsByCity = function(cityId) {
             return $http({
