@@ -32,11 +32,9 @@
                ng-model="user.lastName"  
                class="form-control"  
                placeholder="Last Name"
-               ng-minlength="3"
                ng-maxlength="25"
                required/>
         <p ng-show="!userForm.$valid && userForm.lastName.$error.required" class="error-msg">Last Name is required</p>
-        <p ng-show="!userForm.$valid && userForm.lastName.$error.minlength" class="error-msg">Last name is too short.</p>
         <p ng-show="!userForm.$valid && userForm.lastName.$error.maxlength" class="error-msg">Last name is too long.</p>
       </fieldset>
     </fieldset>  
@@ -116,6 +114,8 @@
 
 
   <div class="col-md-5 centered ls-block"  ng-show="user">
+    <p ng-show="pwdSuccessMsg" class="success-msg text-center">{{pwdSuccessMsg}}</p>
+    <p ng-show="pwdErrorMsg" class="error-msg text-center margin-b-10">{{pwdErrorMsg}}</p>
     <form name="passwordForm" class="col-md-8 centered" ng-submit="changeUserPassword()" novalidate>
       <div class="form-group">
         <input type="password" 
@@ -132,11 +132,14 @@
                name="newPassword"
                ng-model="newPassword" 
                placeholder="New Password" 
+               ng-minlength="6"
+               ng-maxlength="12"
                required />
         <p ng-show="(passwordForm.$dirty && !passwordForm.$valid) && passwordForm.newPassword.$error.required" class="error-msg">New Password is required</p>
         <p ng-show="(passwordForm.$dirty && !passwordForm.$valid) && passwordForm.newPassword.$error.minlength" class="error-msg">New Password should contains min of 6 characters.</p>
         <p ng-show="(passwordForm.$dirty && !passwordForm.$valid) && passwordForm.newPassword.$error.maxlength" class="error-msg">New Password should contains max of 12 characters.</p>
       </div>
+      <div ng-show="(confirmPassword.length > 0 && newPassword === confirmPassword)" class="tick-icon"></div>
       <div class="form-group">
         <input type="password" 
                class="form-control"
@@ -147,7 +150,7 @@
         <p ng-show="(passwordForm.$dirty && !passwordForm.$valid) && passwordForm.confirmPassword.$error.required" class="error-msg">Confirm Password is required</p>
 
       </div>
-      <p ng-show="(confirmPassword.length > 0 && newPassword === confirmPassword)">right</p>
+      
       <div>
         <button type="submit" class="btn ls-btn" ng-disabled="!passwordForm.$valid || (confirmPassword.length > 0 && (newPassword !== confirmPassword))">Change Password</button>
       </div>

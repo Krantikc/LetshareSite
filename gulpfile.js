@@ -51,7 +51,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('sass', function() {
-    return gulp.src('css/ls-styles.scss')
+    return gulp.src('css/styles.scss')
         .pipe(plumber())
         .pipe(sourcemaps.init())
             .pipe(sass({

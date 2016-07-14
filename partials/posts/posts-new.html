@@ -6,6 +6,7 @@
     
     
       <div class="col-md-12 centered ls-block new-post-form">
+        <p ng-show="successMsg" class="success-msg text-center">{{successMsg}}</p>
         <form  name="postForm" ng-submit="submitPost()" novalidate>
           <!-- Post Title -->
           <fieldset class="form-group col-lg-12">
@@ -17,7 +18,7 @@
                    placeholder="Title"
                    ng-minlength="3"
                    ng-maxlength="120"
-                   required>
+                   required/>
               <p ng-show="!formValid && postForm.title.$error.required" class="error-msg">Title is required</p>
               <p ng-show="!formValid && postForm.title.$error.minlength" class="error-msg">Title is too short.</p>
               <p ng-show="!formValid && postForm.title.$error.maxlength" class="error-msg">Title should not exceed 120 characters.</p>
@@ -88,8 +89,7 @@
              <!-- City 1 -->
             <fieldset class="form-group col-lg-5">
               <label for="city">City</label><br/>
-              <select ng-required="true" 
-                      ng-model="post.city1" 
+              <select ng-model="post.city1" 
                       ng-options="city.name for city in cities"
                       ng-change="citySelectionChange(post.city1, 'from')"
                       class="form-control"></select>
@@ -97,8 +97,7 @@
              <!-- Area 1 -->
             <fieldset class="form-group col-lg-5" ng-show="post.city1">
               <label for="location">Location</label><br/>
-              <select ng-required="true" 
-                      ng-model="post.location1" 
+              <select ng-model="post.location1" 
                       ng-options="location.name for location in fromLocations"
                       class="form-control"></select>
             </fieldset>
@@ -110,8 +109,7 @@
             <fieldset class="form-group col-lg-5">
                <!-- City 2 -->
               <label for="city">City</label><br/>
-              <select ng-required="true" 
-                      ng-model="post.city2" 
+              <select ng-model="post.city2" 
                       ng-options="city.name for city in cities"
                       ng-change="citySelectionChange(post.city2, 'to')"
                       class="form-control"></select>
@@ -119,8 +117,7 @@
              <!-- Area 2 -->
             <fieldset class="form-group col-lg-5" ng-show="post.city2">
               <label for="location">Location</label><br/>
-              <select ng-required="true" 
-                      ng-model="post.location2" 
+              <select ng-model="post.location2" 
                       ng-options="location.name for location in toLocations" 
                       class="form-control"></select>
               
@@ -132,40 +129,22 @@
           <fieldset class="ls-fieldset-block" ng-if="isVisibleField('toLocation')">
             <label for="location">Journey Date</label>
             <div class="input-group col-md-5">
-              <input type="text" class="form-control col-lg-5" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+              <input type="text" class="form-control col-lg-5" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
               <span class="input-group-btn">
                 <button type="button" class="btn btn-default filter-control" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
               </span>
             </div>
           </fieldset>
-          
-          <!--
-          
-          <fieldset class="ls-fieldset-block" ng-if="visibleFields.location3">
-            <legend>Via Location </legend>
-            <fieldset class="form-group col-lg-5">
-              <label for="location">Location</label>
-              <input ng-model="post.location3Id" type="number" class="form-control" id="location" placeholder="Location">
-            </fieldset>
-            
-            <fieldset class="form-group col-lg-5">
-              <label for="city">City</label>
-              <input ng-model="post.city3Id" type="number" class="form-control" id="city" placeholder="City">
-            </fieldset>
-          </fieldset>
-          
-          -->
         
           <!-- Brand -->
           <fieldset>
             <fieldset class="form-group col-lg-10" ng-if="isVisibleField('brand')">
               <label for="brand">Brand</label>
-              <input ng-required="true" 
-                     ng-model="post.brand" type="text" class="form-control" id="brand" placeholder="Eg, Hundai, KTM, Prestige etc">
+              <input ng-model="post.brand" type="text" class="form-control" id="brand" placeholder="Eg, Hundai, KTM, Prestige etc"/>
             </fieldset>
             <fieldset class="form-group col-lg-10" ng-if="isVisibleField('uniqueId')">
               <label for="unique-id">Unique Reference Id</label>
-              <input ng-required="uniqueIdRequired" ng-model="post.uniqueId" type="text" class="form-control" id="unique-id" placeholder="License No., Registration No. etc">
+              <input ng-model="post.uniqueId" type="text" class="form-control" id="unique-id" placeholder="License No., Registration No. etc"/>
             </fieldset>
           </fieldset>
           
@@ -173,7 +152,7 @@
           <fieldset class="form-group">
             <fieldset class="form-group  col-lg-6" ng-if="isVisibleField('capacity')">
               <label for="city">Capacity</label>
-              <input ng-model="post.capacity" type="number" class="form-control" id="city" placeholder="Eg, 5, 100 etc">
+              <input ng-model="post.capacity" type="number" class="form-control" id="city" placeholder="Eg, 5, 100 etc"/>
             </fieldset>
             
             <fieldset class="form-group col-lg-4" ng-if="isVisibleField('capacity')">
@@ -223,8 +202,6 @@
               <div class="drop-box"
                    ngf-select 
                    ng-model="post.uploadedFile1" 
-                   name="file" 
-                   ngf-pattern="'image/*'"
                    ngf-accept="'image/*'" 
                    ngf-max-size="10MB" 
                    ngf-min-height="100"

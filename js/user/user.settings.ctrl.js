@@ -21,8 +21,16 @@ angular.module('Letshare').controller('UserSettingsController',
 
         $scope.updateUser = function() {
             if ($scope.userForm.$valid) {
+
+                $scope.successMsg = null;
+                $scope.errorMsg = null;
                 userSettingsAPIService.updateUser($scope.user).then(function(response) {
-                    console.log('success');
+                    var result = response.data;
+                    if (result.success) {
+                        $scope.successMsg = 'User profile updated successfully';
+                    } else {
+                        $scope.errorMsg = result.message;
+                    }
                 }, function() {
                     console.log('ERROR');
                 });
@@ -39,9 +47,18 @@ angular.module('Letshare').controller('UserSettingsController',
                     newPassword: $scope.newPassword
                 };
 
+
+                $scope.pwdSuccessMsg = null;
+                $scope.pwdErrorMsg = null;
                 userSettingsAPIService
                     .changeUserPassword(user)
                     .then(function(response) {
+                        var result = response.data;
+                        if (result.success) {
+                            $scope.pwdSuccessMsg = result.msg;
+                        } else {
+                            $scope.pwdErrorMsg = result.msg;
+                        }
                         console.log('success');
                     }, function() {
                         console.log('ERROR');

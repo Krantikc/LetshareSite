@@ -18,6 +18,7 @@ angular.module('Letshare').controller('UserController', ['$rootScope', '$scope',
         $scope.registerUser = function() {
             var isFormValid = validateForm($scope.registerForm);
             if (isFormValid) {
+                $scope.loading = true;
                 $scope.successMsg = '';
                 $scope.errorMsg = '';
                 userAPIService
@@ -33,7 +34,9 @@ angular.module('Letshare').controller('UserController', ['$rootScope', '$scope',
                         }
                         //$scope.postsList = response.posts;
                         console.log('success');
-                    }, failureHandler);
+                    }, failureHandler)
+                    .finally(finallyHandler);
+
             }
         };
         
@@ -45,6 +48,16 @@ angular.module('Letshare').controller('UserController', ['$rootScope', '$scope',
             $rootScope.currentUser = {};
             $state.go('login');
         };
+
+
+        function failureHandler() {
+            console.error('ERROR');
+        }
+
+        function finallyHandler() {
+            $scope.loading = false;
+        }
+        
         
     }
     

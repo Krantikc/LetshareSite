@@ -24,6 +24,12 @@ angular.module('Letshare').config(['$stateProvider', '$urlRouterProvider', '$htt
                 controller: 'LoginController',
                 parent: 'app'
             })
+            .state('forgotpassword', {
+                url: '/forgotpassword',
+                templateUrl: 'partials/forgot-password.html',
+                controller: 'ForgotPasswordController',
+                parent: 'app'
+            })
             .state('user', {
                 url: '/user',
                 templateUrl: 'partials/user.html',
@@ -119,7 +125,7 @@ angular.module('Letshare').config(['$stateProvider', '$urlRouterProvider', '$htt
             
             //$httpProvider.defaults.withCredentials = true;
 
-            $locationProvider.html5Mode(true);
+            //$locationProvider.html5Mode(true);
 
     }]);
 

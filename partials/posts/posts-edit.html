@@ -75,16 +75,14 @@
             
             <fieldset class="form-group col-lg-5">
               <label for="city">City</label><br/>
-              <select ng-required="true" 
-                      ng-model="post.city1" 
+              <select ng-model="post.city1" 
                       ng-options="city.name for city in cities"
                       ng-change="citySelectionChange(post.city1, 'from')"
                       class="form-control"></select>
             </fieldset>
             <fieldset class="form-group col-lg-5" ng-show="post.city1">
               <label for="location">Location</label><br/>
-              <select ng-required="true" 
-                      ng-model="post.location1" 
+              <select ng-model="post.location1" 
                       ng-options="location.name for location in fromLocations"
                       class="form-control"></select>
             </fieldset>
@@ -95,16 +93,14 @@
             <legend>To Location </legend>
             <fieldset class="form-group col-lg-5">
               <label for="city">City</label><br/>
-              <select ng-required="true" 
-                      ng-model="post.city2" 
+              <select ng-model="post.city2" 
                       ng-options="city.name for city in cities"
                       ng-change="citySelectionChange(post.city2, 'to')"
                       class="form-control"></select>
             </fieldset>
             <fieldset class="form-group col-lg-5" ng-show="post.city2">
               <label for="location">Location</label><br/>
-              <select ng-required="true" 
-                      ng-model="post.location2" 
+              <select ng-model="post.location2" 
                       ng-options="location.name for location in toLocations" 
                       class="form-control"></select>
               
@@ -133,12 +129,11 @@
           <fieldset>
             <fieldset class="form-group col-lg-10" ng-if="isVisibleField('brand')">
               <label for="brand">Brand</label>
-              <input ng-required="true" 
-                     ng-model="post.brand" type="text" class="form-control" id="brand" placeholder="Eg, Hundai, KTM, Prestige etc">
+              <input ng-model="post.brand" type="text" class="form-control" id="brand" placeholder="Eg, Hundai, KTM, Prestige etc">
             </fieldset>
             <fieldset class="form-group col-lg-10" ng-if="isVisibleField('uniqueId')">
               <label for="unique-id">Unique Reference Id</label>
-              <input ng-required="uniqueIdRequired" ng-model="post.uniqueId" type="text" class="form-control" id="unique-id" placeholder="License No., Registration No. etc">
+              <input ng-model="post.uniqueId" type="text" class="form-control" id="unique-id" placeholder="License No., Registration No. etc">
             </fieldset>
           </fieldset>
           

@@ -3,17 +3,15 @@
       <div class="text-center"> Post Details </div>
     </div>
     <div class="col-md-10 centered ls-block post-details-block">
-      <div class="col-md-6 image-gallery">
+      <div class="col-md-8 image-gallery">
 
-        <image-carousel data="postDetails"></image-carousel>
-      </div>
-      <div class="col-md-6 details-bock">
+        <image-carousel data="post"></image-carousel>
 
-        <fieldset class="col-md-12">
+          <fieldset class="col-md-12 title-block">
             <div class="col-md-12">
               <label>Title</label>
               <p>
-                {{post.title}} -- {{$root.currentUser}}
+                {{post.title}}
               </p>
             </div>
 
@@ -23,43 +21,48 @@
                {{post.description}}
               </p>
             </div>
+          </fieldset>
+      </div>
+      <div class="col-md-4 details-bock">
 
-            <div class="col-md-6">
+        <fieldset class="col-md-12">
+
+            <div class="col-md-12">
               <label>Type</label>
               <p>
                 {{post.postType}}
               </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label>Category</label>
               <p>
                 {{postCategory.name}}
               </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label>From City</label>
               <p>
                 {{postFromCity.name}}
               </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label>From Location</label>
               <p>
                 {{postFromLocation.name}}
               </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label>To City</label>
               <p>
                 {{postToCity.name}}
               </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label>To Location</label>
               <p>
                 {{postToLocation.name}}
@@ -68,42 +71,42 @@
 
             
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label>Journey Date</label>
               <p>
                 {{post.processDate | date}}
               </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label>Brand</label>
               <p>
                 {{post.postDetails.brand}}
               </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label>Unique ID</label>
               <p>
                 {{post.postDetails.uniqueId}}
               </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label>Capacity</label>
               <p>
                 {{post.postDetails.capacity}}
               </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label>Availability</label>
               <p>
                 {{post.postDetails.availability}}
               </p>
             </div>
 
-            <div class="col-md-6">
+            <div class="col-md-12">
               <label>Amenities</label>
               <p>
                 {{post.postDetails.amenities}}
@@ -111,18 +114,18 @@
             </div>
         </fieldset>
 
-        <fieldset class="col-md-12">
+        <fieldset class="col-md-12  contact-details" ng-if="post.displayContactDetails">
 
           <div class="col-md-6 centered text-center">
               <label>Contact Details</label>
               <p>
-                {{$root.currentUser.firstName }}  {{$root.currentUser.lastName}}
+                {{user.firstName }}  {{$root.currentUser.lastName}}
               </p>
               <p>
-                {{$root.currentUser.mobile }}
+                {{user.mobile }}
               </p>
                <p>
-                {{$root.currentUser.email }}
+                {{user.email }}
               </p>
           </div>
 

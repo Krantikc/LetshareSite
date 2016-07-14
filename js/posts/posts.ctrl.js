@@ -226,6 +226,7 @@ angular.module('Letshare').controller('PostsNewController', ['$scope', '$http', 
         }
          
         $scope.submitPost = function() {
+            $scope.successMsg = null;
             var isFormValid = validateForm($scope.postForm);
             if (isFormValid) {
                 var post = $scope.post;
@@ -464,7 +465,7 @@ angular.module('Letshare').controller('PostsEditController', ['$scope', '$http',
             if (isFormValid) {
                 var post = $scope.post;
                 post.userId = $scope.currentUser.userId;
-                post.categoryId = $scope.post.category[0].categoryId;
+                post.categoryId = $scope.selectedCategory.categoryId;
                 post.city1Id = $scope.post.city1.cityId;
                 post.location1Id = $scope.post.location1.locationId;
                 
@@ -478,9 +479,7 @@ angular.module('Letshare').controller('PostsEditController', ['$scope', '$http',
                     .success(function(response) {
                         //$scope.postsList = response.posts;
                         console.log(response);
-                        $scope.successMsg = 'Your ad has been posted successfully.';
-                        $scope.post = null;
-                        scope.postForm.$setPristine();
+                        $scope.successMsg = 'Your ad has been updated successfully.';
                     });
             }
             
@@ -492,8 +491,8 @@ angular.module('Letshare').controller('PostsEditController', ['$scope', '$http',
 
 
 angular.module('Letshare').controller('PostsDetailsController', ['$scope', '$stateParams', 'svLocale', 'postsAPIService', 
-                                                                 'categoryAPIService', 'Upload', 'locationsAPIService', 'genericAPIService',
-    function($scope, $stateParams, svLocale, postsAPIService, categoryAPIService, Upload, locationsAPIService, genericAPIService) {
+                                                                 'categoryAPIService', 'Upload', 'locationsAPIService', 'genericAPIService', 'userAPIService',
+    function($scope, $stateParams, svLocale, postsAPIService, categoryAPIService, Upload, locationsAPIService, genericAPIService, userAPIService) {
 
 
         postsAPIService.getPostById($stateParams.id).then(function(response) {
@@ -520,6 +519,10 @@ angular.module('Letshare').controller('PostsDetailsController', ['$scope', '$sta
             genericAPIService.getObject($scope.post.categoryId, 'category').then(function(response) {
                 $scope.postCategory = response.data.object;
 
+            });
+
+            userAPIService.getUser($scope.post.userId).then(function(response) {
+                $scope.user = response.data.user;
             });
             
         }, function() {

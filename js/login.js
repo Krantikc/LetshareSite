@@ -14,10 +14,10 @@
                 if (form.$valid) {
                     $scope.formValid = true;
                     return true;
-                } else {
-                    $scope.formValid = false;
-                    return false;
                 }
+                
+                $scope.formValid = false;
+                return false;
             }
             
             $scope.doLogin = function() {

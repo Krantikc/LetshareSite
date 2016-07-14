@@ -29,6 +29,13 @@ angular.module('Letshare').factory('userAPIService',
                 }
             });
         };
+
+         userService.getUser = function(userId) {
+            return $http({
+                method: 'GET',
+                url: ENV.api + 'user/' + userId
+            });
+        };
         
         return userService;
     }
